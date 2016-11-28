@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'STWSocialKit_Example' do
+  pod 'STWSocialKit', :path => '../'
+
+  target 'STWSocialKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
