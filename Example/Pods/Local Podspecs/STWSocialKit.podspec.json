@@ -19,6 +19,7 @@
     "ios": "9.3"
   },
   "source_files": "STWSocialKit/Classes/**/*",
+  "frameworks": "Social",
   "dependencies": {
     "OAuthSwift": [
       "~> 1.1.0"

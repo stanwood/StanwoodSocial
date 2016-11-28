@@ -10,9 +10,9 @@ import Foundation
 
 // MARK: - typealias blocks
 
-typealias STSuccessBlock = (_ success: Bool) -> Void
-typealias STLikeHandler = (_ likeObject: STLike?, _ error: Error?) -> Void
-typealias STCommentHandler = (_ likeObject: STComment?, _ error: Error?) -> Void
+public typealias STSuccessBlock = (_ success: Bool) -> Void
+public typealias STLikeHandler = (_ likeObject: STLike?, _ error: Error?) -> Void
+public typealias STCommentHandler = (_ likeObject: STComment?, _ error: Error?) -> Void
 
 // MARK: - Social Constants
 
@@ -107,7 +107,7 @@ enum STSocialScope: String {
 
 /// Sotial Operations
 
-enum STOperation {
+public enum STOperation {
     case like
     case comment
     case share

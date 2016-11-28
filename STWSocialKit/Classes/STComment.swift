@@ -14,12 +14,12 @@ enum STCommentKey: String {
     case canComment = "can_comment"
 }
 
-struct STComment {
-    var count:Int?
-    var canComment:Bool?
-    var id:String
+public struct STComment {
+    public var count:Int?
+    public var canComment:Bool?
+    public var id:String
     
-    init(map:Map, id:String) {
+    public init(map:Map, id:String) {
         self.id = id
         count <- map[STCommentKey.count.rawValue]
         canComment <- map[STCommentKey.canComment.rawValue]

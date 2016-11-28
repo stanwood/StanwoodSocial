@@ -20,10 +20,10 @@ protocol STSocialManagerDelegate {
     func didLogin(type: STSocialType, withError error: Error?)
 }
 
-class STSocialManager: NSObject {
+open class STSocialManager: NSObject {
     
     /// Shared singelton
-    static var shared:STSocialManager = STSocialManager()
+    open static var shared:STSocialManager = STSocialManager()
     
     /// Service configurations
     var configurations:STSocialConfiguration!
@@ -256,7 +256,7 @@ class STSocialManager: NSObject {
         
         switch type {
         case .facebook:
-            let param = STParams.fb(comment: comment)
+            let param = STParamsNo.fb(comment: comment)
             let request = FBSDKGraphRequest(graphPath: "\(id)/comments", parameters: param, httpMethod: "POST")
             _ = request?.start(completionHandler: {
                 (request, any:Any?, error:Error?) in
@@ -822,24 +822,24 @@ class STSocialManager: NSObject {
 extension STSocialManager: OAuthWebViewControllerDelegate {
     #if os(iOS) || os(tvOS)
     
-    func oauthWebViewControllerDidPresent() {
+    public func oauthWebViewControllerDidPresent() {
         
     }
-    func oauthWebViewControllerDidDismiss() {
+    public func oauthWebViewControllerDidDismiss() {
         
     }
     #endif
     
-    func oauthWebViewControllerWillAppear() {
+    public func oauthWebViewControllerWillAppear() {
         
     }
-    func oauthWebViewControllerDidAppear() {
+    public func oauthWebViewControllerDidAppear() {
         
     }
-    func oauthWebViewControllerWillDisappear() {
+    public func oauthWebViewControllerWillDisappear() {
         
     }
-    func oauthWebViewControllerDidDisappear() {
+    public func oauthWebViewControllerDidDisappear() {
         // Ensure all listeners are removed if presented web view close
         ytOAuthSwift?.cancel()
     }
@@ -848,11 +848,11 @@ extension STSocialManager: OAuthWebViewControllerDelegate {
 //MARK: - FBSDKLoginButtonDelegate
 extension STSocialManager: FBSDKLoginButtonDelegate {
     
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
+    public func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         
     }
     
-    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
+    public func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         delegate?.didLogin(type: .facebook, withError: error)
     }
 }

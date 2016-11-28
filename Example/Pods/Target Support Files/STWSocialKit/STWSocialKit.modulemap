@@ -1,6 +1,0 @@
-framework module STWSocialKit {
-  umbrella header "STWSocialKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

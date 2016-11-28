@@ -16,6 +16,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 STWSocialKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+Adding the private Specs
+
+```
+pod repo add Cocoa_Pods_Specs https://github.com/stanwood/Cocoa_Pods_Specs.git
+```
+
 ```ruby
 pod "STWSocialKit"
 ```

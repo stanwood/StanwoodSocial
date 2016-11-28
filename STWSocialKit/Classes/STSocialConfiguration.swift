@@ -9,7 +9,7 @@
 import Foundation
 import FBSDKLoginKit
 
-struct STSocialConfiguration {
+public struct STSocialConfiguration {
     var services:[STSocialService]
     
     public func logout(){

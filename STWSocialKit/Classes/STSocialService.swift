@@ -22,7 +22,7 @@ protocol STSocialServiceProtocol {
 /**
  STSocialType sets the OAuth service
  */
-enum STSocialType: String {
+public enum STSocialType: String {
     case facebook
     case youtube
     case instagram

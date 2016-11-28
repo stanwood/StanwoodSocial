@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct STLocalizedCommentStrings {
+public struct STLocalizedCommentStrings {
     let title:String
     let send: String
     let cancel:String

@@ -1,6 +1,0 @@
-framework module Pods_STWSocialKit_Example {
-  umbrella header "Pods-STWSocialKit_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
