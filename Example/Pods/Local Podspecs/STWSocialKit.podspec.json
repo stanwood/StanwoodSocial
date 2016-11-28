@@ -1,9 +1,9 @@
 {
   "name": "STWSocialKit",
   "version": "0.1.0",
-  "summary": "A short description of STWSocialKit.",
+  "summary": "Wrapper for social media SDKs",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/STWSocialKit",
+  "homepage": "https://github.com/stanwood/STWSocialKit",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,31 @@
     "Tal Zion": "talezion@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/STWSocialKit.git",
+    "git": "https://github.com/stanwood/STWSocialKit.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.3"
   },
-  "source_files": "STWSocialKit/Classes/**/*"
+  "source_files": "STWSocialKit/Classes/**/*",
+  "dependencies": {
+    "OAuthSwift": [
+
+    ],
+    "Locksmith": [
+
+    ],
+    "ObjectMapper": [
+
+    ],
+    "FBSDKCoreKit": [
+
+    ],
+    "FBSDKShareKit": [
+
+    ],
+    "FBSDKLoginKit": [
+
+    ]
+  }
 }
