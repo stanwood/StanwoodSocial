@@ -26,4 +26,4 @@ Tal Zion, talezion@gmail.com
 
 ## License
 
-STWSocialKit is available under the MIT license. See the LICENSE file for more info.
+STWSocialKit is a private library. See the LICENSE file for more info
