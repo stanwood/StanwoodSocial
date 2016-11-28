@@ -25,13 +25,11 @@ class SocialMediaViewController: UIViewController {
         super.viewDidLoad()
         
         /// Setting OAuth handler
-        STSocialManager.shared.set(target: self)
+        //STSocialManager.shared.set(target: self)
         
         
         collectionView.allowsSelection = false
-
-        let h = OAuth2Swift(consumerKey: "", consumerSecret: "", authorizeUrl: "", accessTokenUrl: "", responseType: "")
-        
+ 
         loadData(withUrl: socialUrl)
     }
     
@@ -42,7 +40,7 @@ class SocialMediaViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        STSocialManager.shared.cancelAllOperations()
+        //STSocialManager.shared.cancelAllOperations()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -88,12 +86,12 @@ class SocialMediaViewController: UIViewController {
     
     fileprivate func configureDataSource(){
         
-        collectionView.register(UINib("SMPostCell","SMPostCell"), forCellWithReuseIdentifier: nil)
-        
-        self.dataSource = SocialMediaDataSource(dataObject: self.items, currentViewController: self)
-        self.delegate = SocialMediaDelegate(currentViewController: self, dataObject: self.filteredItems)
-        
-        self.collectionView.dataSource = self.dataSource
-        self.collectionView.delegate = self.delegate
+//        collectionView.register(UINib("SMPostCell","SMPostCell"), forCellWithReuseIdentifier: nil)
+//        
+//        self.dataSource = SocialMediaDataSource(dataObject: self.items, currentViewController: self)
+//        self.delegate = SocialMediaDelegate(currentViewController: self, dataObject: self.filteredItems)
+//        
+//        self.collectionView.dataSource = self.dataSource
+//        self.collectionView.delegate = self.delegate
     }
 }

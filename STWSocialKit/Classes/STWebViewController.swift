@@ -8,8 +8,8 @@
 
 import OAuthSwift
 import UIKit
-typealias WebView = UIWebView // WKWebView
 
+typealias WebView = UIWebView // WKWebView
 
 class STWebViewController: OAuthWebViewController {
     

@@ -93,19 +93,19 @@ struct SMPost: Type {
     
     fileprivate func getPostAtString(fromComponant component: DateComponents) -> String {
         if component.month != 0 {
-            return component.month! > 1 ?  String(format: "POSTED_MONTHS".localized, "\(component.month!)") : String(format: "POSTED_MONTH".localized, "\(component.month!)")
+            return component.month! > 1 ?  String(format: "%@ months ago", "\(component.month!)") : String(format: "%@ month ago", "\(component.month!)")
             
         } else if component.weekOfYear != 0 {
-            return component.weekOfYear! > 1 ?  String(format: "POSTED_WEEKS".localized, "\(component.weekOfYear!)") : String(format: "POSTED_WEEK".localized, "\(component.weekOfYear!)")
+            return component.weekOfYear! > 1 ?  String(format: "%@ weeks ago", "\(component.weekOfYear!)") : String(format: "%@ week ago", "\(component.weekOfYear!)")
             
         } else if component.day != 0 {
-            return component.day! > 1 ?  String(format: "POSTED_DAYS".localized, "\(component.day!)") : String(format: "POSTED_DAY".localized, "\(component.day!)")
+            return component.day! > 1 ?  String(format: "%@ days ago", "\(component.day!)") : String(format: "%@ day ago", "\(component.day!)")
             
         } else if component.hour != 0 {
-            return component.hour! > 1 ?  String(format: "POSTED_HOURS".localized, "\(component.hour!)") : String(format: "POSTED_HOUR".localized, "\(component.hour!)")
+            return component.hour! > 1 ?  String(format: "%@ hours ago", "\(component.hour!)") : String(format: "%@ hour ago", "\(component.hour!)")
             
         } else if component.minute != 0 {
-            return component.minute! > 1 ?  String(format: "POSTED_MINUTES".localized, "\(component.minute!)") : String(format: "POSTED_MINUTE".localized, "\(component.minute!)")
+            return component.minute! > 1 ?  String(format: "%@ minutes ago", "\(component.minute!)") : String(format: "%@ minute ago", "\(component.minute!)")
             
         } else {
             return ""

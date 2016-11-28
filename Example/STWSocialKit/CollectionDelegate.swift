@@ -9,6 +9,29 @@
 import Foundation
 import UIKit
 
+/**
+ DataSourceDelegate informs the UIViewController when it need to execute some tasks
+ */
+protocol DataSourceDelegate: class {
+    func reloadData()
+}
+
+protocol DataType {
+    var numberOfItems:Int { get }
+    func setItemsFrom(_ parser: Type) -> Self
+    func insertItemAtIndex(insertItem item: Type, toIndex:Int) -> Self
+    subscript(index: Int) -> Type { get }
+    subscript(item: Type) -> Int { get }
+    func insterItem(_ item: Type) -> Self
+    func updateItem(_ type: Type) -> Self
+}
+
+/**
+ Type protocol must be implelemented to any object passed to objects thta conform with DataType
+ */
+protocol Type {
+}
+
 protocol CollectionDelegateType {
     
     var dataObject:DataType? {get set}

@@ -37,7 +37,7 @@ private enum ShareBaseURL: String {
     case youtube = "https://www.youtube.com/watch?v=%@"
 }
 
-struct STLike {
+public struct STLike {
     var count: Int?
     var hasLiked: Bool?
     var canLike: Bool?

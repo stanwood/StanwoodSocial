@@ -46,8 +46,8 @@ class SMPostCell: UICollectionViewCell {
     
     private var postType:PostType!
     var post:SMPost?
-    private var commentObject: STComment?
-    private var likeObject: STLike?
+    //private var commentObject: STComment?
+    //private var likeObject: STLike?
     
     weak var target:UIViewController?
     
@@ -56,6 +56,7 @@ class SMPostCell: UICollectionViewCell {
         
     }
     
+    /*
     @IBAction func socialAction(_ sender: UIButton) {
         guard let action = SocialAction(rawValue: sender.tag) else { return }
         guard post != nil else { return }
@@ -298,6 +299,7 @@ class SMPostCell: UICollectionViewCell {
             playerView.alpha = 1
         }
     }
+ */
 }
 
 extension SMPostCell: YouTubePlayerDelegate {
@@ -307,7 +309,7 @@ extension SMPostCell: YouTubePlayerDelegate {
     }
     
     func playerReady(_ videoPlayer: YouTubePlayerView) {
-        isPlayer(hidden: false)
+        //isPlayer(hidden: false)
     }
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {

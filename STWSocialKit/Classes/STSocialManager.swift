@@ -256,7 +256,7 @@ open class STSocialManager: NSObject {
         
         switch type {
         case .facebook:
-            let param = STParamsNo.fb(comment: comment)
+            let param = STParams.fb(comment: comment)
             let request = FBSDKGraphRequest(graphPath: "\(id)/comments", parameters: param, httpMethod: "POST")
             _ = request?.start(completionHandler: {
                 (request, any:Any?, error:Error?) in
