@@ -1,0 +1,22 @@
+{
+  "name": "STWSocialKit",
+  "version": "0.1.0",
+  "summary": "A short description of STWSocialKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/STWSocialKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Tal Zion": "talezion@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/STWSocialKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "STWSocialKit/Classes/**/*"
+}

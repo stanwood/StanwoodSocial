@@ -1,0 +1,16 @@
+PODS:
+  - STWSocialKit (0.1.0)
+
+DEPENDENCIES:
+  - STWSocialKit (from `../`)
+
+EXTERNAL SOURCES:
+  STWSocialKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  STWSocialKit: 91ae7f93b7178692070028299b4d1541f7bcdd50
+
+PODFILE CHECKSUM: 8f079827a49690d9c6d98c4ac5f794e87f0f812f
+
+COCOAPODS: 1.1.1

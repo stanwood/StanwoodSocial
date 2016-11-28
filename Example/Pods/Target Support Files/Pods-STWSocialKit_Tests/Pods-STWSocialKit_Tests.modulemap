@@ -1,0 +1,6 @@
+framework module Pods_STWSocialKit_Tests {
+  umbrella header "Pods-STWSocialKit_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
