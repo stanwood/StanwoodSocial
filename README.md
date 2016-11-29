@@ -2,7 +2,7 @@
 
 [![CI Status](http://img.shields.io/travis/Tal Zion/STWSocialKit.svg?style=flat)](https://travis-ci.org/Tal Zion/STWSocialKit)
 [![Version](https://img.shields.io/cocoapods/v/STWSocialKit.svg?style=flat)](http://cocoapods.org/pods/STWSocialKit)
-[![License](https://img.shields.io/cocoapods/l/STWSocialKit.svg?style=flat)](http://cocoapods.org/pods/STWSocialKit)
+[![License: Private](https://img.shields.io/cocoapods/l/STWSocialKit.svg?style=flat)](https://github.com/stanwood/STWSocialKit/blob/master/LICENSE)
 [![Platform](https://img.shields.io/cocoapods/p/STWSocialKit.svg?style=flat)](http://cocoapods.org/pods/STWSocialKit)
 [![Swift Version](https://img.shields.io/badge/Swift-3.0.x-orange.svg)]()
 
