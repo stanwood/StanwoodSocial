@@ -31,7 +31,7 @@ end
 
 ## Configurations
 
-Add services in `AppDelegate` `didFinishLaunchingWithOptions`
+1) Add services in `AppDelegate` `didFinishLaunchingWithOptions`
 
 ```swift
 
@@ -43,6 +43,12 @@ let configurations = STSocialConfiguration(services: [facebook, instagram, youtu
 
 _ = STSocialManager.shared.set(configurations: configurations)
 
+```
+
+2) Set the target in the `SocialStreamViewController` `ViewDidLoad`
+
+```swift
+STSocialManager.shared.set(target: self)
 ```
 
 ## Authentication Flow
