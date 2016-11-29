@@ -73,6 +73,12 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 
 3) Set the target in the `YOURSocialStreamViewController` `viewDidLoad`
 
+
+```swift
+STSocialManager.shared.set(target: self)
+```
+
+
 4) Conform to `STSocialManagerDelegate` to get login/logout notifications in `viewDidLoad`. `STSocialManager.shared.delegate = self`
 
 ```swift
@@ -125,10 +131,6 @@ func didLogin(type: STSocialType, withError error: Error?) {
 
     4. For a quickstart help, click
 [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
-
-```swift
-STSocialManager.shared.set(target: self)
-```
 
 ## Authentication Flow
 
