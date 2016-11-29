@@ -29,8 +29,6 @@ use_frameworks!
 end
 ```
 
-## Usage
-
 ## Configurations
 
 1) Add services in `AppDelegate` `didFinishLaunchingWithOptions`
@@ -108,6 +106,21 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
 
 3) Set the target in the `YOURSocialStreamViewController` `viewDidLoad`
+
+4) Conform to `STSocialManagerDelegate` to get login/logout notifications in `viewDidLoad`. `STSocialManager.shared.delegate = self`
+
+
+```swift
+func didLogout(type: STSocialType?) {
+    /// Reload data
+    collectionView.reloadData()
+}
+
+func didLogin(type: STSocialType, withError error: Error?) {
+    /// Reload data
+    collectionView.reloadData()
+}
+```
 
 ```swift
 STSocialManager.shared.set(target: self)
