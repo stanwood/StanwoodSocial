@@ -105,10 +105,9 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 ```
 
     4. For a quickstart help, click
-
 [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
 
-3) Set the target in the `SocialStreamViewController` `viewDidLoad`
+3) Set the target in the `YOURSocialStreamViewController` `viewDidLoad`
 
 ```swift
 STSocialManager.shared.set(target: self)
