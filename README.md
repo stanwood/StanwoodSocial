@@ -112,6 +112,7 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 
 4) Conform to `STSocialManagerDelegate` to get login/logout notifications in `viewDidLoad`. `STSocialManager.shared.delegate = self`
 
+5) Set YouTube callback URL schemes in `Info.plist`
 
 ```swift
 func didLogout(type: STSocialType?) {
