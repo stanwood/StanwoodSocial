@@ -25,6 +25,7 @@
 		6C1EDDAD1DEC2FEC00359992 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1EDDAC1DEC2FEC00359992 /* NetworkManager.swift */; };
 		6C4300E61DEC681900E7F904 /* FetchRequestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4300E51DEC681900E7F904 /* FetchRequestController.swift */; };
 		6C4300E81DEC6C4E00E7F904 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4300E71DEC6C4E00E7F904 /* StringExtension.swift */; };
+		6C4300ED1DED6CDD00E7F904 /* SocialConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4300EC1DED6CDD00E7F904 /* SocialConstants.swift */; };
 		AE0171F68932F8E791CCF1EF /* Pods_STWSocialKit_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A63A432B8719385B49BBB5 /* Pods_STWSocialKit_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		6C1EDDAC1DEC2FEC00359992 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		6C4300E51DEC681900E7F904 /* FetchRequestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRequestController.swift; sourceTree = "<group>"; };
 		6C4300E71DEC6C4E00E7F904 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		6C4300EC1DED6CDD00E7F904 /* SocialConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialConstants.swift; sourceTree = "<group>"; };
 		7090953B52D2EE53965F3A6A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71802D8A37AC607C80F4E3FA /* STWSocialKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = STWSocialKit.podspec; path = ../STWSocialKit.podspec; sourceTree = "<group>"; };
 		86AC069CDD116960932A51D4 /* Pods-STWSocialKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STWSocialKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STWSocialKit_Example/Pods-STWSocialKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,10 +133,7 @@
 		607FACD21AFB9204008FA782 /* Example for STWSocialKit */ = {
 			isa = PBXGroup;
 			children = (
-				6C4300E51DEC681900E7F904 /* FetchRequestController.swift */,
-				6C4300E71DEC6C4E00E7F904 /* StringExtension.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				6C1EDDAC1DEC2FEC00359992 /* NetworkManager.swift */,
 				6C1EDD901DEC28C600359992 /* SocialMediaViewController.swift */,
 				6C1EDDAB1DEC2BB300359992 /* Protocols */,
 				6C1EDDA21DEC2A6C00359992 /* Cell */,
@@ -152,6 +151,7 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6C4300E91DED6A6100E7F904 /* Helpers */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -219,6 +219,17 @@
 				6C1EDDA81DEC2BAA00359992 /* CollectionDataSource.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		6C4300E91DED6A6100E7F904 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6C4300E51DEC681900E7F904 /* FetchRequestController.swift */,
+				6C4300E71DEC6C4E00E7F904 /* StringExtension.swift */,
+				6C1EDDAC1DEC2FEC00359992 /* NetworkManager.swift */,
+				6C4300EC1DED6CDD00E7F904 /* SocialConstants.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +391,7 @@
 				6C1EDDA01DEC2A6800359992 /* SMPostCell.swift in Sources */,
 				6C1EDDA91DEC2BAA00359992 /* CollectionDelegate.swift in Sources */,
 				6C1EDD9B1DEC2A4A00359992 /* SMPost.swift in Sources */,
+				6C4300ED1DED6CDD00E7F904 /* SocialConstants.swift in Sources */,
 				6C1EDDAD1DEC2FEC00359992 /* NetworkManager.swift in Sources */,
 				6C1EDDAA1DEC2BAA00359992 /* CollectionDataSource.swift in Sources */,
 				6C4300E61DEC681900E7F904 /* FetchRequestController.swift in Sources */,

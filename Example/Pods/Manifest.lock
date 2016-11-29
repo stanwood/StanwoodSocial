@@ -28,10 +28,12 @@ DEPENDENCIES:
   - FontAwesome.swift
   - Locksmith
   - OAuthSwift
-  - STWSocialKit
+  - STWSocialKit (from `../`)
   - YouTubePlayer (from `https://github.com/talezion/Swift-YouTube-Player`, commit `c18c39fad86e1cfb35380acd12b58fdaa57cdfe9`)
 
 EXTERNAL SOURCES:
+  STWSocialKit:
+    :path: "../"
   YouTubePlayer:
     :commit: c18c39fad86e1cfb35380acd12b58fdaa57cdfe9
     :git: https://github.com/talezion/Swift-YouTube-Player
@@ -50,9 +52,9 @@ SPEC CHECKSUMS:
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
   OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
-  STWSocialKit: a4ebfe09b990022ac10f56ea5a4ea025e9fcbcff
+  STWSocialKit: '0912e71d684de6b9ac5e9aa6a26c171d6d02ac30'
   YouTubePlayer: 162bd51d7a77b4b6ad914b0b87af07b7e81f8b70
 
-PODFILE CHECKSUM: 13af39985f06a6be76bdf64bd151bf364b712bda
+PODFILE CHECKSUM: 5438592f60917d12f00ea965ec42fa9266fb3c65
 
 COCOAPODS: 1.1.1

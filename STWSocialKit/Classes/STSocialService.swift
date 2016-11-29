@@ -31,7 +31,7 @@ public enum STSocialType: String {
 /**
  
  */
-class STSocialService: STSocialServiceProtocol {
+public class STSocialService: STSocialServiceProtocol {
     
     var appType: STSocialType
     var appID: String
@@ -107,7 +107,7 @@ class STSocialService: STSocialServiceProtocol {
     }
     
     // MARK: Init
-    init(appID: String, appSecret: String, appType: STSocialType, callbackURI: String? = nil) {
+    public init(appID: String, appSecret: String, appType: STSocialType, callbackURI: String? = nil) {
         self.appID = appID
         self.appSecret = appSecret
         self.appType = appType
