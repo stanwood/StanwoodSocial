@@ -57,7 +57,7 @@ STSocialManager.shared.set(target: self)
 
 ### Facebook
 
-Authenticating with Facebook, we will use `FBSDKLoginKit` for one time authentication.
+We will use `FBSDKLoginKit` for one time authentication.
 
 ### Instagram
 
@@ -216,9 +216,22 @@ STSocialManager.shared.cancelOperation(forPostID: [POST_ID], operation: .comment
 
 Simply call `STSocialManager.shared.logout` to log out the user from all services.
 
-## Author
+## Dependencies
 
-Tal Zion, talezion@gmail.com
+`STWSocialKit` comes bundled with several libraries:
+
+```ruby
+# iOS Frameworks
+s.frameworks = 'Social'
+
+#CocoaPods Frameworks
+s.dependency 'OAuthSwift', '~> 1.1.0'
+s.dependency 'Locksmith', '~> 3.0.0'
+s.dependency 'ObjectMapper', '~> 2.2.1'
+s.dependency 'FBSDKCoreKit', '~> 4.17.0'
+s.dependency 'FBSDKShareKit', '~> 4.17.0'
+s.dependency 'FBSDKLoginKit', '~> 4.17.0'
+```
 
 ## License
 
