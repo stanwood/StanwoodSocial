@@ -27,8 +27,6 @@ end
 
 ## Usage
 
-## Services
-
 ## Configurations
 
 1) Add services in `AppDelegate` `didFinishLaunchingWithOptions`
@@ -45,7 +43,7 @@ _ = STSocialManager.shared.set(configurations: configurations)
 
 ```
 
-2) Set the target in the `SocialStreamViewController` `ViewDidLoad`
+2) Set the target in the `SocialStreamViewController` `viewDidLoad`
 
 ```swift
 STSocialManager.shared.set(target: self)
@@ -55,7 +53,22 @@ STSocialManager.shared.set(target: self)
 
 ## Social Actions
 
+## Operation Management
 
+Cancel all operations in `viewDidDisappear`. This will cancel fetching `STLike` & `STComment` objects in the queue.
+
+```swift
+STSocialManager.shared.cancelAllOperations()
+
+```
+
+Cancel a sinlge operation in `UICollectionViewDelegate` `didEndDisplaying cell`
+
+```swift
+// Canceling an operation task
+STSocialManager.shared.cancelOperation(forPostID: [POST_ID], operation: .like)
+STSocialManager.shared.cancelOperation(forPostID: [POST_ID], operation: .comment)
+```
 ## Author
 
 Tal Zion, talezion@gmail.com
