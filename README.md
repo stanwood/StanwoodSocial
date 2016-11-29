@@ -92,7 +92,7 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 <string>DISPLAY_NAME</string>
 ```
 
-    3. As we Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
+    3. As we use Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
 
 ```xml
 <key>LSApplicationQueriesSchemes</key>
@@ -104,9 +104,7 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 </array>
 ```
 
-        For a quickstart help, click [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
-
-    4. 
+    4. For a quickstart help, click [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
 
 3) Set the target in the `SocialStreamViewController` `viewDidLoad`
 
