@@ -16,8 +16,9 @@ import Locksmith
 import Social
 
 /// ST Manager delegate
-protocol STSocialManagerDelegate {
+public protocol STSocialManagerDelegate {
     func didLogin(type: STSocialType, withError error: Error?)
+    func didLogout(type: STSocialType?)
 }
 
 open class STSocialManager: NSObject {
@@ -26,14 +27,14 @@ open class STSocialManager: NSObject {
     open static var shared:STSocialManager = STSocialManager()
     
     /// Service configurations
-    var configurations:STSocialConfiguration!
+    fileprivate var configurations:STSocialConfiguration!
     
     /// Service OAuth2 handlers
-    var igOAuthSwift: OAuth2Swift?
-    var ytOAuthSwift: OAuth2Swift?
+    fileprivate var igOAuthSwift: OAuth2Swift?
+    fileprivate var ytOAuthSwift: OAuth2Swift?
     
     /// Delegate
-    var delegate:STSocialManagerDelegate?
+    public var delegate:STSocialManagerDelegate?
     
     /// Operation Queue
     fileprivate lazy var queue: OperationQueue? = OperationQueue.current
@@ -736,9 +737,11 @@ open class STSocialManager: NSObject {
                 //Storing the token in the keychain
                 self.getService(forType: .instagram)?.token = credential.oauthToken
                 self.setInstagramUser()
+                self.delegate?.didLogin(type: .instagram, withError: nil)
                 print("Instagram Access Token: \(credential.oauthToken)")
         }, failure: { (error) in
             print(error.description)
+            self.delegate?.didLogin(type: .instagram, withError: error)
         })
     }()
     
@@ -757,11 +760,13 @@ open class STSocialManager: NSObject {
                                             //Storing the token in the keychain
                                             self.getService(forType: .youtube)?.token = credential.oauthToken
                                             self.getService(forType: .youtube)?.refreshToken = credential.oauthRefreshToken
+                                            self.delegate?.didLogin(type: .youtube, withError: nil)
                                             print("YouTube Access_Token \(parameters)")
                                             
                                             
         }, failure: { (error: OAuthSwiftError) in
             print("ERROR: \(error.description)")
+            self.delegate?.didLogin(type: .youtube, withError: error)
         })
     }()
     
@@ -837,6 +842,7 @@ open class STSocialManager: NSObject {
     
     public func logout() {
         configurations.logout()
+        delegate?.didLogout(type: nil)
     }
 }
 
@@ -872,7 +878,7 @@ extension STSocialManager: OAuthWebViewControllerDelegate {
 extension STSocialManager: FBSDKLoginButtonDelegate {
     
     public func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
-        
+        delegate?.didLogout(type: .facebook)
     }
     
     public func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
