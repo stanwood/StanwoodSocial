@@ -142,7 +142,7 @@ if canComment {
 }
 ```
 
-This will show standard a pop up `textField` for the user to comment.
+This will show a standard pop up `textField` for the user to comment.
 
 `//TODO: Set a custom pop up option`
 
@@ -163,19 +163,19 @@ do {
 
 This function will throw an `STSocialError.shareError` in case there is no target set up in the `ViewController`.
 
-Each service offer different share features:
+Each service offers different share features:
 
-###### Facebook
+##### Facebook
 
 Facebook will share the `likeObject?.shareLink`, the title, and the post image. In case the Facebook `Social` iOS SDK is avalible, the stadard share will be used, otherwise, we will use `FBSDKShareKit`
 
-###### YouTube
+##### YouTube
 
 With YouTube share feature, we will use the standard iOS `UIActivityViewController` with an option to share the video thumbnail, or the video link.
 
 For localised `actionSheet`, you can pass `STLocalizedShareStrings`.
 
-###### Instagram 
+##### Instagram 
 
 With Instagram, we will use the standard iOS `UIActivityViewController` with an option to share the Instagram image, or the post link.
 
