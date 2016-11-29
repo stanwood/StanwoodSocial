@@ -31,6 +31,20 @@ end
 
 ## Configurations
 
+Add services in `AppDelegate` `didFinishLaunchingWithOptions`
+
+```swift
+
+let facebook = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .facebook)
+let instagram = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .instagram, callbackURI: [CALLBACK_URI])
+let youtube = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .youtube, callbackURI: [CALLBACK_URI])
+
+let configurations = STSocialConfiguration(services: [facebook, instagram, youtube])
+
+_ = STSocialManager.shared.set(configurations: configurations)
+
+```
+
 ## Authentication Flow
 
 ## Social Actions
