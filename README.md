@@ -104,7 +104,9 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 </array>
 ```
 
-    4. For a quickstart help, click [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
+    4. For a quickstart help, click
+
+[Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
 
 3) Set the target in the `SocialStreamViewController` `viewDidLoad`
 
