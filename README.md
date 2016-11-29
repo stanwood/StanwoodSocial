@@ -4,6 +4,7 @@
 [![Version](https://img.shields.io/cocoapods/v/STWSocialKit.svg?style=flat)](http://cocoapods.org/pods/STWSocialKit)
 [![License](https://img.shields.io/cocoapods/l/STWSocialKit.svg?style=flat)](http://cocoapods.org/pods/STWSocialKit)
 [![Platform](https://img.shields.io/cocoapods/p/STWSocialKit.svg?style=flat)](http://cocoapods.org/pods/STWSocialKit)
+[![Swift Version](https://img.shields.io/badge/Swift-3.0.x-orange.svg)]()
 
 ## Example
 
@@ -52,6 +53,56 @@ STSocialManager.shared.set(target: self)
 ## Authentication Flow
 
 ## Social Actions
+
+#### Getting `STLike` Object
+
+```swift
+STSocialManager.shared.getLike(objectID: [POST_ID], forType: [STSocialType], handler: {
+  [weak self] (likeObject, error) in
+  DispatchQueue.main.async(execute: {
+    if error == nil, let _likeObject = likeObject {
+       // Setting like/unlike icon and like count
+    } else {
+       // Error
+    })
+})
+```
+
+#### Getting `STComment` object
+
+```swift
+STSocialManager.shared.getComment(bjectID: post?.id ?? "", forType: type, handler: {
+    [weak self] (commentObject, error) in
+        if error == nil, commentObject != nil {
+            // Setting comment object
+        } else {
+            // Error
+        }
+})
+
+#### Liking a post
+
+```swift
+
+```
+
+#### Unliking a post
+
+```swift
+
+```
+
+#### Commenting on a post
+
+```swift
+
+```
+
+#### Sharing a post
+
+```swift
+
+```
 
 ## Operation Management
 
