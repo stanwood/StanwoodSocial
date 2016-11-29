@@ -74,7 +74,7 @@ STSocialManager.shared.getLike(objectID: [POST_ID], forType: [STSocialType], han
 #### Getting `STComment` object
 
 ```swift
-STSocialManager.shared.getComment(bjectID: post?.id ?? "", forType: type, handler: {
+STSocialManager.shared.getComment(bjectID: [POST_ID], forType: [STSocialType], handler: {
     [weak self] (commentObject, error) in
         if error == nil, commentObject != nil {
             // Setting comment object
@@ -85,14 +85,46 @@ STSocialManager.shared.getComment(bjectID: post?.id ?? "", forType: type, handle
 
 #### Liking a post
 
+Check if current post `hasLiked` & `canLike`.
 ```swift
+guard let hasLiked = likeObject?.hasLiked,
+(likeObject?.canLike)! else { return }
+```
 
+Likeing a post
+
+```swift
+STSocialManager.shared.like(postID: [POST_ID], forSocialType: [STSocialType], handler: {
+    [weak self, id = post!.id] (success: Bool) in
+    DispatchQueue.main.async(execute: {
+        if success {
+            // Set current likeObject
+            self?.likeObject?.hasLiked = true
+            
+            /// Set lke icon to like
+        } else {
+            // Failed to like the post
+        }
+    })
+})
 ```
 
 #### Unliking a post
 
 ```swift
+STSocialManager.shared.unlike(postID: [POST_ID], forSocialType: [STSocialType], handler: {
+    [weak self, id = post!.id] (success: Bool) in
+    DispatchQueue.main.async(execute: {
+        if success {
+            // Set current likeObject
+            self?.likeObject?.hasLiked = true
 
+            /// Set lke icon to like
+        } else {
+            // Failed to like the post
+        }
+    })
+})
 ```
 
 #### Commenting on a post
