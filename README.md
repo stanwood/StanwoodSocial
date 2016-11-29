@@ -256,7 +256,7 @@ do {
 
 This function will throw an `STSocialError.shareError` in case there is no target set up in the `ViewController`.
 
-Each service offers different share features:
+#### Each service offers different share features:
 
 ##### Facebook
 
