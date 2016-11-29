@@ -82,10 +82,12 @@ STSocialManager.shared.getComment(bjectID: [POST_ID], forType: [STSocialType], h
             // Error
         }
 })
+```
 
 #### Liking a post
 
 Check if current post `hasLiked` & `canLike`.
+
 ```swift
 guard let hasLiked = likeObject?.hasLiked,
 (likeObject?.canLike)! else { return }
