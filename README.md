@@ -91,9 +91,9 @@ func didLogin(type: STSocialType, withError error: Error?) {
 
 ### Facebook Additional Configuration
 
-1. Right-click your `.plist` file and choose "Open As Source Code".
+    1. Right-click your `.plist` file and choose "Open As Source Code".
 
-2. Copy & Paste the XML snippet into the body of your file ( <dict>...</dict> ).
+    2. Copy & Paste the XML snippet into the body of your file ( <dict>...</dict> ).
 
 ```xml
 <key>CFBundleURLTypes</key>
@@ -111,7 +111,7 @@ func didLogin(type: STSocialType, withError error: Error?) {
 <string>DISPLAY_NAME</string>
 ```
 
-3. As we use Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
+    3. As we use Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
 
 ```xml
 <key>LSApplicationQueriesSchemes</key>
@@ -123,7 +123,7 @@ func didLogin(type: STSocialType, withError error: Error?) {
 </array>
 ```
 
-4. For a quickstart help, click
+    4. For a quickstart help, click
 [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
 
 ```swift
