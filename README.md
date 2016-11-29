@@ -93,7 +93,7 @@ guard let hasLiked = likeObject?.hasLiked,
 (likeObject?.canLike)! else { return }
 ```
 
-Likeing a post
+#### Likeing a post
 
 ```swift
 STSocialManager.shared.like(postID: [POST_ID], forSocialType: [STSocialType], handler: {
@@ -132,14 +132,54 @@ STSocialManager.shared.unlike(postID: [POST_ID], forSocialType: [STSocialType], 
 #### Commenting on a post
 
 ```swift
+// Check if user `canComment`
 
+guard let canComment = commentObject?.canComment else { return }
+
+if canComment {
+    /// Post comment
+    STSocialManager.shared.postComment(forObjectId: [POST_ID], type: [STSocialType], withLocalizedStrings: nil)
+}
 ```
+
+This will show standard a pop up `textField` for the user to comment.
+
+`//TODO: Set a custom pop up option`
+
+You can add a localised string object `STLocalizedCommentStrings`
 
 #### Sharing a post
 
+To share a post, use:
 ```swift
-
+do {
+    try STSocialManager.shared.share(postLink: likeObject?.shareLink ?? "", forType: type, localizedStrings: nil, withPostTitle: post!.author.name, postText: post!.text, postImageURL: post!.image, image: postImage.image)
+} catch STSocialError.shareError(let message) {
+    print(message)
+} catch {
+    print(error.localizedDescription)
+}
 ```
+
+This function will throw an `STSocialError.shareError` in case there is no target set up in the `ViewController`.
+
+Each service offer different share features:
+
+###### Facebook
+
+Facebook will share the `likeObject?.shareLink`, the title, and the post image. In case the Facebook `Social` iOS SDK is avalible, the stadard share will be used, otherwise, we will use `FBSDKShareKit`
+
+###### YouTube
+
+With YouTube share feature, we will use the standard iOS `UIActivityViewController` with an option to share the video thumbnail, or the video link.
+
+For localised `actionSheet`, you can pass `STLocalizedShareStrings`.
+
+###### Instagram 
+
+With Instagram, we will use the standard iOS `UIActivityViewController` with an option to share the Instagram image, or the post link.
+
+For localised `actionSheet`, you can pass `STLocalizedShareStrings`.
 
 ## Operation Management
 
