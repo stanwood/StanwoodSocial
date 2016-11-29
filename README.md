@@ -71,48 +71,9 @@ func application(_ application: UIApplication, open url: URL, sourceApplication:
 
 ```
 
-### Facebook Additional Configuration
-
-    1. Right-click your `.plist` file and choose "Open As Source Code".
-
-    2. Copy & Paste the XML snippet into the body of your file ( <dict>...</dict> ).
-
-```xml
-<key>CFBundleURLTypes</key>
-<array>
-    <dict>
-    <key>CFBundleURLSchemes</key>
-    <array>
-      <string>BUNDLE_SCHEME</string>
-    </array>
-    </dict>
-</array>
-<key>FacebookAppID</key>
-<string>ID</string>
-<key>FacebookDisplayName</key>
-<string>DISPLAY_NAME</string>
-```
-
-    3. As we use Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
-
-```xml
-<key>LSApplicationQueriesSchemes</key>
-<array>
-    <string>fbapi</string>
-    <string>fb-messenger-api</string>
-    <string>fbauth2</string>
-    <string>fbshareextension</string>
-</array>
-```
-
-    4. For a quickstart help, click
-[Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
-
 3) Set the target in the `YOURSocialStreamViewController` `viewDidLoad`
 
 4) Conform to `STSocialManagerDelegate` to get login/logout notifications in `viewDidLoad`. `STSocialManager.shared.delegate = self`
-
-5) Set YouTube callback URL schemes in `Info.plist`
 
 ```swift
 func didLogout(type: STSocialType?) {
@@ -125,6 +86,45 @@ func didLogin(type: STSocialType, withError error: Error?) {
     collectionView.reloadData()
 }
 ```
+
+5) Set YouTube callback URL schemes in `Info.plist`
+
+### Facebook Additional Configuration
+
+1. Right-click your `.plist` file and choose "Open As Source Code".
+
+2. Copy & Paste the XML snippet into the body of your file ( <dict>...</dict> ).
+
+```xml
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+        <string>BUNDLE_SCHEME</string>
+    </array>
+    </dict>
+</array>
+<key>FacebookAppID</key>
+<string>ID</string>
+<key>FacebookDisplayName</key>
+<string>DISPLAY_NAME</string>
+```
+
+3. As we use Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
+
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>fbapi</string>
+    <string>fb-messenger-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+</array>
+```
+
+4. For a quickstart help, click
+[Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
 
 ```swift
 STSocialManager.shared.set(target: self)
