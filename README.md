@@ -31,10 +31,13 @@ end
 
 ## Configurations
 
-1) Add services in `AppDelegate` `didFinishLaunchingWithOptions`
+1) Add services and Faceboook Configurations in `AppDelegate` `didFinishLaunchingWithOptions`
 
 ```swift
+// Configure Facebook
+STSocialManager.configure(application: application, didFinishLaunchingWithOptions: launchOptions)
 
+// Configure Social Services
 let facebook = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .facebook)
 let instagram = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .instagram, callbackURI: [CALLBACK_URI])
 let youtube = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .youtube, callbackURI: [CALLBACK_URI])

@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // Configure Facebook
+        STSocialManager.configure(application: application, didFinishLaunchingWithOptions: launchOptions)
+        
         /// Configuring Interactive Social Stream
         let facebook = STSocialService(appID: SocialConstants.fbAppID, appSecret: SocialConstants.fbAppSecret, appType: .facebook)
         let instagram = STSocialService(appID: SocialConstants.igAppID, appSecret: SocialConstants.igAppSecret, appType: .instagram, callbackURI: "https://www.sophia-thiel.com")
