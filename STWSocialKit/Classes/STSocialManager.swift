@@ -62,6 +62,21 @@ open class STSocialManager: NSObject {
         super.init()
     }
     
+    //MARK: - Handel Callback
+    
+    public static func handle(callbackURL url: URL) {
+        if let host = url.host, host == "oauth-callback" {
+            OAuthSwift.handle(url: url)
+        } else if let bundle = Bundle.main.bundleIdentifier, bundle == url.scheme {
+            // Google provider is the only one wuth your.bundle.id url schema.
+            //OAuth2Swift.handle(url: url)
+            OAuthSwift.handle(url: url)
+        } else if url.absoluteString.contains("#access_token=") {
+            // OAuth Instagram
+            OAuthSwift.handle(url: url)
+        }
+    }
+    
     //MARK: - STManager Launch Configuration
     /*
      To post-process the results from actions that require you to switch to the native Facebook app or Safari, such as Facebook Login or Facebook Dialogs
@@ -69,8 +84,14 @@ open class STSocialManager: NSObject {
      :app: UIApplication
      */
     public static func configure(app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
-        let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
-        return isHandled
+        /// Checking if Instagram OAuth
+        if url.absoluteString.contains("#access_token=") {
+            return true
+        } else {
+            /// Setting Facebook configuration
+            let isHandled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[.sourceApplication] as! String!, annotation: options[.annotation])
+            return isHandled
+        }
     }
     
     /*
@@ -603,6 +624,8 @@ open class STSocialManager: NSObject {
         }
     }
     
+    // MARK: - Authenticating
+    
     /*
      Authentication user services
      */
@@ -700,17 +723,6 @@ open class STSocialManager: NSObject {
         }
     }
     
-    fileprivate func getService(forType type: STSocialType) -> STSocialService? {
-        
-        for service in self.configurations.services {
-            if service.appType == type {
-                return service
-            }
-        }
-        
-        return nil
-    }
-    
     // MARK: - Dispatch Once OAuth Blocks
     
     fileprivate lazy var __onceIGAuth: () = {
@@ -774,6 +786,17 @@ open class STSocialManager: NSObject {
     }
     
     // MARK: - Helpers
+    
+    fileprivate func getService(forType type: STSocialType) -> STSocialService? {
+        
+        for service in self.configurations.services {
+            if service.appType == type {
+                return service
+            }
+        }
+        
+        return nil
+    }
     
     fileprivate func generateState(withLength len : Int) -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

@@ -19,7 +19,7 @@ class SocialMediaViewController: UIViewController {
     fileprivate var items:SMPosts?
     fileprivate var activityIndictor:UIActivityIndicatorView!
     
-    var socialUrl:String!
+    var socialUrl:URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class SocialMediaViewController: UIViewController {
         
         collectionView.allowsSelection = false
  
-        loadData(withUrl: socialUrl)
+        loadData(withUrl: socialUrl.absoluteString)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,12 +51,6 @@ class SocialMediaViewController: UIViewController {
         activityIndictor.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height * 0.95)
         view.addSubview(activityIndictor)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-
     
     fileprivate func loadData(withUrl url: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

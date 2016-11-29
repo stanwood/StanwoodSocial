@@ -38,12 +38,12 @@ private enum ShareBaseURL: String {
 }
 
 public struct STLike {
-    var count: Int?
-    var hasLiked: Bool?
-    var canLike: Bool?
-    var id:String?
-    
-    var countString:String {
+    public var count: Int?
+    public var hasLiked: Bool?
+    public var canLike: Bool?
+    public var id:String?
+    public var shareLink:String?
+    public var countString:String {
         get {
             if let _count = count {
                 return _count >= 1000 ? "Likes \(Double(Double(_count) / 1000).roundTo(places: 2))k" : "Likes \(_count)"
@@ -53,7 +53,6 @@ public struct STLike {
         }
     }
     
-    var shareLink:String?
     fileprivate var items:[Any]?
     fileprivate var itemsDictionary: [String:Any]?
     fileprivate var ratingKey:String?

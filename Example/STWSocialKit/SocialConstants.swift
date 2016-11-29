@@ -10,8 +10,8 @@ import Foundation
 
 class SocialConstants {
     //Facebook
-    static let fbAppID = "1273299002726565"
-    static let fbAppSecret = "38258710ff68b9e8aa5e4e3c93620880"
+    static let fbAppID = "1270045609684804"
+    static let fbAppSecret = "48058a2f2d93f6a57a0dfbce2598ca4e"
     
     //Instagram
     static let igAppID = "685b565cb53749cd80cff42aa6562e38"

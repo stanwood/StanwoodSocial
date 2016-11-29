@@ -47,7 +47,68 @@ _ = STSocialManager.shared.set(configurations: configurations)
 
 ```
 
-2) Set the target in the `SocialStreamViewController` `viewDidLoad`
+2) Handle callback
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    
+    /// Handling callback
+    STSocialManager.handle(callbackURL: url)
+
+    Confiugring with sheme
+    return STSocialManager.configure(app: app, open: url, options: options)
+}
+
+func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    
+    /// Handling callback
+    STSocialManager.handle(callbackURL: url)
+    return true
+}
+
+
+
+```
+
+### Facebook Additional Configuration
+
+    1. Right-click your `.plist` file and choose "Open As Source Code".
+
+    2. Copy & Paste the XML snippet into the body of your file ( <dict>...</dict> ).
+
+```xml
+<key>CFBundleURLTypes</key>
+<array>
+    <dict>
+    <key>CFBundleURLSchemes</key>
+    <array>
+      <string>BUNDLE_SCHEME</string>
+    </array>
+    </dict>
+</array>
+<key>FacebookAppID</key>
+<string>ID</string>
+<key>FacebookDisplayName</key>
+<string>DISPLAY_NAME</string>
+```
+
+    3. As we Facebook dialogs (e.g., Login, Share, App Invites, etc.) that can perform an app switch to Facebook apps, your application's .plist also need to handle this.
+
+```xml
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>fbapi</string>
+    <string>fb-messenger-api</string>
+    <string>fbauth2</string>
+    <string>fbshareextension</string>
+</array>
+```
+
+        For a quickstart help, click [Facebook iOS Quickstart](https://developers.facebook.com/quickstarts/?platform=ios)
+
+    4. 
+
+3) Set the target in the `SocialStreamViewController` `viewDidLoad`
 
 ```swift
 STSocialManager.shared.set(target: self)

@@ -122,10 +122,10 @@ internal enum STConfigurationKey: String {
 
 /// ST error types
 
-enum OAuthErrorType: Error {
+public enum OAuthErrorType: Error {
     case invalidConfiguration(String)
 }
 
-enum STSocialError: Error {
+public enum STSocialError: Error {
     case shareError(String)
 }

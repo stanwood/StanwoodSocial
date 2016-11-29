@@ -46,8 +46,8 @@ class SMPostCell: UICollectionViewCell {
     
     private var postType:PostType!
     var post:SMPost?
-    //private var commentObject: STComment?
-    //private var likeObject: STLike?
+    private var commentObject: STComment?
+    private var likeObject: STLike?
     
     weak var target:UIViewController?
     
@@ -56,7 +56,6 @@ class SMPostCell: UICollectionViewCell {
         
     }
     
-    /*
     @IBAction func socialAction(_ sender: UIButton) {
         guard let action = SocialAction(rawValue: sender.tag) else { return }
         guard post != nil else { return }
@@ -77,9 +76,9 @@ class SMPostCell: UICollectionViewCell {
             do {
                 try STSocialManager.shared.share(postLink: likeObject?.shareLink ?? "", forType: type, localizedStrings: nil, withPostTitle: post!.author.name, postText: post!.text, postImageURL: post!.image, image: postImage.image)
             } catch STSocialError.shareError(let message) {
-                AppController.sharedController.logResponse(message)
+                print(message)
             } catch {
-                AppController.sharedController.logResponse(error.localizedDescription)
+                print(error.localizedDescription)
             }
         }
     }
@@ -147,7 +146,7 @@ class SMPostCell: UICollectionViewCell {
                 self?.commentObject = commentObject
             } else {
                 if error != nil {
-                    AppController.sharedController.recordError(error!)
+                    print(error!)
                 }
             }
         })
@@ -172,7 +171,7 @@ class SMPostCell: UICollectionViewCell {
                     self?.likesLabel.text = _likeObject.countString
                 } else {
                     if error != nil {
-                        AppController.sharedController.recordError(error!)
+                        print(error!)
                     }
                 }
             })
@@ -235,7 +234,7 @@ class SMPostCell: UICollectionViewCell {
                     self?.likeObject?.hasLiked = true
                     sender.setImage(UIImage(named: SocialImage.like.rawValue), for: .normal)
                 } else {
-                    AppController.sharedController.logResponse("Failed do liek post id\(id)")
+                    print("Failed do liek post id\(id)")
                 }
             })
         })
@@ -251,7 +250,7 @@ class SMPostCell: UICollectionViewCell {
                     self?.likeObject?.hasLiked = false
                     sender.setImage(UIImage(named: SocialImage.unlike.rawValue), for: .normal)
                 } else {
-                    AppController.sharedController.logResponse("Failed do liek post id\(id)")
+                    print("Failed do liek post id\(id)")
                 }
             }
         })
@@ -299,7 +298,6 @@ class SMPostCell: UICollectionViewCell {
             playerView.alpha = 1
         }
     }
- */
 }
 
 extension SMPostCell: YouTubePlayerDelegate {
