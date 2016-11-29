@@ -55,6 +55,20 @@ STSocialManager.shared.set(target: self)
 
 ## Authentication Flow
 
+### Facebook
+
+Authenticating with Facebook, we will use `FBSDKLoginKit` for one time authentication.
+
+### Instagram
+
+Instagram uses `OAuth2` protocol, hence, we are using `OAuthSwift` for authenticating. We will store the initial `access_token` in the keychain, which is reused with no expiry date. 
+
+### YouTube/Google
+
+Google uses `OAuth2` protocol, hence, we are using `OAuthSwift` for authenticating. Once the user authenticates for the first time, we will store the `refresh_token` in the keychain, which can be reused to get a new token with no expiry date. In case the user revokes access to the app, the `refresh_token` will be revoked as well, and the user will need to authenticate again.
+
+#### Note: Please make sure to enable Keychain Sharing
+
 ## Social Actions
 
 #### Getting `STLike` Object
@@ -84,7 +98,7 @@ STSocialManager.shared.getComment(bjectID: [POST_ID], forType: [STSocialType], h
 })
 ```
 
-#### Liking a post
+#### Like
 
 Check if current post `hasLiked` & `canLike`.
 
@@ -93,7 +107,7 @@ guard let hasLiked = likeObject?.hasLiked,
 (likeObject?.canLike)! else { return }
 ```
 
-#### Likeing a post
+#### Liking a post
 
 ```swift
 STSocialManager.shared.like(postID: [POST_ID], forSocialType: [STSocialType], handler: {
@@ -167,7 +181,7 @@ Each service offers different share features:
 
 ##### Facebook
 
-Facebook will share the `likeObject?.shareLink`, the title, and the post image. In case the Facebook `Social` iOS SDK is avalible, the stadard share will be used, otherwise, we will use `FBSDKShareKit`
+Facebook will share the `likeObject?.shareLink`, the title, and the post image. In case the Facebook `Social` iOS SDK is available, the standard share will be used, otherwise, we will use `FBSDKShareKit`
 
 ##### YouTube
 
@@ -190,13 +204,18 @@ STSocialManager.shared.cancelAllOperations()
 
 ```
 
-Cancel a sinlge operation in `UICollectionViewDelegate` `didEndDisplaying cell`
+Cancel a single operation in `UICollectionViewDelegate` `didEndDisplaying cell`
 
 ```swift
 // Canceling an operation task
 STSocialManager.shared.cancelOperation(forPostID: [POST_ID], operation: .like)
 STSocialManager.shared.cancelOperation(forPostID: [POST_ID], operation: .comment)
 ```
+
+## Logging out
+
+Simply call `STSocialManager.shared.logout` to log out the user from all services.
+
 ## Author
 
 Tal Zion, talezion@gmail.com
