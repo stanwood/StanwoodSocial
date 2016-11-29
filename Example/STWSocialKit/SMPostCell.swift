@@ -154,8 +154,9 @@ class SMPostCell: UICollectionViewCell {
     
     private func getLikeObject() {
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
-
-        STSocialManager.shared.getLike(objectID: post?.id ?? "", forType: type, handler: {
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
+        
+        STSocialManager.shared.getLike(objectID: id, forType: type, handler: {
             [weak self] (likeObject, error) in
             DispatchQueue.main.async(execute: {
                 if error == nil, let _likeObject = likeObject {

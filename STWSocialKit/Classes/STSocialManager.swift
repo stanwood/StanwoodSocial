@@ -285,12 +285,9 @@ open class STSocialManager: NSObject {
                 print(request?.urlResponse ?? "")
             })
         case .instagram:
-            #if DEBUG
-                let url = "https://api.instagram.com/v1/media/\("1388547752770023453_26609750")/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #else
-                let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #endif
             
+            let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
+    
             let param: [String: Any] = [
                 "text" : comment
             ]
@@ -437,11 +434,8 @@ open class STSocialManager: NSObject {
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.like)_\(id)"] = operation
         case .instagram:
-            #if DEBUG
-                let url = "https://api.instagram.com/v1/media/\("1388547752770023453_26609750")/?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #else
-                let url = "https://api.instagram.com/v1/media/\(id)/?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #endif
+        
+            let url = "https://api.instagram.com/v1/media/\(id)/?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
             
             _ = igOAuthSwift?.client.get(url, success: {
                 (response) in
@@ -532,11 +526,8 @@ open class STSocialManager: NSObject {
                 handler(false)
             })
         case .instagram:
-            #if DEBUG
-                let url = "https://api.instagram.com/v1/media/\("1388547752770023453_26609750")/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #else
-                let url = "https://api.instagram.com/v1/media/\(id)/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #endif
+            
+            let url = "https://api.instagram.com/v1/media/\(id)/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
             
             _ = igOAuthSwift?.client.post(url,
                                           success: {
@@ -587,12 +578,9 @@ open class STSocialManager: NSObject {
                 
             })
         case .instagram:
-            #if DEBUG
-                let url = "https://api.instagram.com/v1/media/\("1388547752770023453_26609750")/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #else
-                let url = "https://api.instagram.com/v1/media/\(id)/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #endif
-            
+          
+            let url = "https://api.instagram.com/v1/media/\(id)/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
+           
             _ = igOAuthSwift?.client.delete(url,
                                             success: {
                                                 (response) in
