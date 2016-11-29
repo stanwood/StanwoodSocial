@@ -68,7 +68,8 @@ class SMPostCell: UICollectionViewCell {
             guard let type = STSocialType(rawValue: postType.rawValue) else { return }
             guard let canComment = commentObject?.canComment else { return }
             if canComment {
-                STSocialManager.shared.postComment(forObjectId: post!.id, type: type, withLocalizedStrings: nil)
+                let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
+                STSocialManager.shared.postComment(forObjectId: id, type: type, withLocalizedStrings: nil)
             }
         case .share:
             guard let type = STSocialType(rawValue: postType.rawValue) else { return }
@@ -139,8 +140,9 @@ class SMPostCell: UICollectionViewCell {
     
     private func getCommentObject() {
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.getComment(bjectID: post?.id ?? "", forType: type, handler: {
+        STSocialManager.shared.getComment(bjectID: id, forType: type, handler: {
             [weak self] (commentObject, error) in
             if error == nil, commentObject != nil {
                 self?.commentObject = commentObject
@@ -227,8 +229,9 @@ class SMPostCell: UICollectionViewCell {
     fileprivate func like(sender: UIButton){
         guard let type = STSocialType(rawValue: postType.rawValue),
             (likeObject?.canLike)! else { return }
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.like(postID: post!.id, forSocialType: type, handler: {
+        STSocialManager.shared.like(postID: id, forSocialType: type, handler: {
             [weak self, id = post!.id] (success: Bool) in
             DispatchQueue.main.async(execute: {
                 if success {
@@ -243,8 +246,9 @@ class SMPostCell: UICollectionViewCell {
     
     fileprivate func unlike(sender: UIButton){
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.unlike(postID: post!.id, forSocialType: type, handler: {
+        STSocialManager.shared.unlike(postID: id, forSocialType: type, handler: {
             [weak self, id = post!.id] (success: Bool) in
             DispatchQueue.main.async {
                 if success {

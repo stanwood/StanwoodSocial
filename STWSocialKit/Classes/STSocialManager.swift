@@ -370,11 +370,9 @@ open class STSocialManager: NSObject {
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.comment)_\(id)"] = operation
         case .instagram:
-            #if DEBUG
-                let url = "https://api.instagram.com/v1/media/\("1388547752770023453_26609750")/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #else
-                let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            #endif
+         
+            let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
+            
             _ = igOAuthSwift?.client.get(url,
                                          success: { (response:OAuthSwiftResponse) in
                                             do {
