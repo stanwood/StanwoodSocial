@@ -333,7 +333,7 @@ open class STSocialManager: NSObject {
     /*
      GET social service like object
      */
-    public func getComment(bjectID id: String, forType type: STSocialType, handler: @escaping STCommentHandler) {
+    public func getComment(objectID id: String, forType type: STSocialType, handler: @escaping STCommentHandler) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             auth(forType: type)

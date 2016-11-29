@@ -167,7 +167,7 @@ STSocialManager.shared.getLike(objectID: [POST_ID], forType: [STSocialType], han
 #### Getting `STComment` object
 
 ```swift
-STSocialManager.shared.getComment(bjectID: [POST_ID], forType: [STSocialType], handler: {
+STSocialManager.shared.getComment(objectID: [POST_ID], forType: [STSocialType], handler: {
     [weak self] (commentObject, error) in
         if error == nil, commentObject != nil {
             // Setting comment object

@@ -142,7 +142,7 @@ class SMPostCell: UICollectionViewCell {
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
         let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.getComment(bjectID: id, forType: type, handler: {
+        STSocialManager.shared.getComment(objectID: id, forType: type, handler: {
             [weak self] (commentObject, error) in
             if error == nil, commentObject != nil {
                 self?.commentObject = commentObject
