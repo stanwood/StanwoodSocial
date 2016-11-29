@@ -26,6 +26,7 @@ class SocialMediaViewController: UIViewController {
         
         /// Setting OAuth handler
         STSocialManager.shared.set(target: self)
+        STSocialManager.shared.delegate = self
         
         collectionView.allowsSelection = false
  
@@ -86,5 +87,16 @@ class SocialMediaViewController: UIViewController {
         
         self.collectionView.dataSource = self.dataSource
         self.collectionView.delegate = self.delegate
+    }
+}
+
+extension SocialMediaViewController: STSocialManagerDelegate {
+    
+    func didLogout(type: STSocialType?) {
+        collectionView.reloadData()
+    }
+    
+    func didLogin(type: STSocialType, withError error: Error?) {
+        collectionView.reloadData()
     }
 }
