@@ -500,7 +500,7 @@ open class STSocialManager: NSObject {
                     _ = self.ytOAuthSwift?.client.get(kYTStatisticsURL, parameters: _param, headers: nil, success: {
                         [_response = response] (statisticResponse:OAuthSwiftResponse) in
                         
-                        let (like, error) = self.getLikeObject(id: _id, fromResponse: response, statisticResponse: statisticResponse)
+                        let (like, error) = self.getLikeObject(id: _id, fromResponse: _response, statisticResponse: statisticResponse)
                         handler(like, error)
                         
                         }, failure: { (error: OAuthSwiftError) in
