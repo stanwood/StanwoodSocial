@@ -22,6 +22,7 @@ internal let kIGLikeURL = "https://api.instagram.com/v1/media/%@/likes?access_to
 internal let kIGMediaURL = "https://api.instagram.com/v1/media/%@/?access_token=%@"
 internal let kIGCommentURL = "https://api.instagram.com/v1/media/%@/comments?access_token=%@"
 
+
 // YouTube
 internal let kYTAuthorizeURL = "https://accounts.google.com/o/oauth2/auth"
 internal let kYTAccessTokenURL = "https://accounts.google.com/o/oauth2/token"
@@ -103,6 +104,14 @@ internal struct STParams {
         return [
             "id" : id,
             "part" : "contentDetails, statistics"
+        ]
+    }
+    
+    // Instagram
+    
+    static func ig(comment: String) -> [String: Any] {
+        return [
+            "text" : comment
         ]
     }
 }

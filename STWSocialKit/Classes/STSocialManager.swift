@@ -290,13 +290,10 @@ open class STSocialManager: NSObject {
                 return
             }
             
-            //TODO: PArams and URLS
-            let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-            
-            let param: [String: Any] = [
-                "text" : comment
-            ]
-            
+            let url = String(format: kIGCommentURL, id, igOAuthSwift!.client.credential.oauthToken)
+        
+            let param = STParams.ig(comment: comment)
+                
             _ = igOAuthSwift?.client.post(url,
                                           parameters: param,
                                           headers: nil,
@@ -385,20 +382,25 @@ open class STSocialManager: NSObject {
             
             let url =  String(format: kIGCommentURL, id, igOAuthSwift!.client.credential.oauthToken)
             
-            _ = igOAuthSwift?.client.get(url,
-                                         success: { (response:OAuthSwiftResponse) in
-                                            do {
-                                                if let jsonDict = try response.jsonObject() as? [String:Any] {
-                                                    let map = Map(mappingType: .fromJSON, JSON: jsonDict)
-                                                    let _ = STComment(map: map, id: "")
-                                                    //TODO: Set comment object if needed
+            let operation = BlockOperation(block: { 
+                _ = self.igOAuthSwift?.client.get(url,
+                                             success: { (response:OAuthSwiftResponse) in
+                                                do {
+                                                    if let jsonDict = try response.jsonObject() as? [String:Any] {
+                                                        let map = Map(mappingType: .fromJSON, JSON: jsonDict)
+                                                        let _ = STComment(map: map, id: "")
+                                                        //TODO: Set comment object if needed
+                                                    }
+                                                } catch {
+                                                    print(error)
                                                 }
-                                            } catch {
-                                                print(error)
-                                            }
-            }, failure: { (error:OAuthSwiftError) in
-                print(error.description)
+                }, failure: { (error:OAuthSwiftError) in
+                    print(error.description)
+                })
             })
+            
+            queue?.addOperation(operation)
+            queueDictionary["\(STOperation.comment)_\(id)"] = operation
         case .youtube:
             break
         }
@@ -417,6 +419,8 @@ open class STSocialManager: NSObject {
         
         switch type {
         case .facebook:
+            
+            /// Facebook Block Operation
             let operation = BlockOperation(block: {
                 let param = STParams.ytGetLike()
                 let request = FBSDKGraphRequest(graphPath: "\(id)/likes", parameters: param, httpMethod: STHTTPMethod.GET.rawValue)
@@ -440,10 +444,11 @@ open class STSocialManager: NSObject {
                     }
                 })
             })
-            
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.like)_\(id)"] = operation
         case .instagram:
+            
+            /// Instagram Block Operation
             
             guard igOAuthSwift != nil else {
                 handler(nil, STSocialErrorDomain.igAuthError)
@@ -452,25 +457,31 @@ open class STSocialManager: NSObject {
             
             let url =  String(format: kIGMediaURL, id, igOAuthSwift!.client.credential.oauthToken)
             
-            _ = igOAuthSwift?.client.get(url, success: {
-                (response) in
-                do {
-                    if let jsonDict = try response.jsonObject() as? [String:Any] {
-                        let map = Map(mappingType: .fromJSON, JSON: jsonDict)
-                        let likeObject = STLike(instagramMap: map)
-                        handler(likeObject, nil)
-                    } else {
-                        handler(nil, nil)
+            let operation = BlockOperation(block: { 
+                _ = self.igOAuthSwift?.client.get(url, success: {
+                    (response) in
+                    do {
+                        if let jsonDict = try response.jsonObject() as? [String:Any] {
+                            let map = Map(mappingType: .fromJSON, JSON: jsonDict)
+                            let likeObject = STLike(instagramMap: map)
+                            handler(likeObject, nil)
+                        } else {
+                            handler(nil, nil)
+                        }
+                    } catch {
+                        print(error)
+                        handler(nil, error)
                     }
-                } catch {
-                    print(error)
-                    handler(nil, error)
-                }
-            }, failure: { (error:OAuthSwiftError) in
-                print(error.toNSError)
-                handler(nil, error.toNSError)
+                }, failure: { (error:OAuthSwiftError) in
+                    print(error.toNSError)
+                    handler(nil, error.toNSError)
+                })
             })
+            queue?.addOperation(operation)
+            queueDictionary["\(STOperation.like)_\(id)"] = operation
         case .youtube:
+            
+            /// YouTube Block Operation
             
             guard ytOAuthSwift != nil else {
                 handler(nil, STSocialErrorDomain.ytAuthError)
@@ -480,25 +491,29 @@ open class STSocialManager: NSObject {
             let paramaters = STParams.ytId(forId: id)
             let listParamaters = STParams.ytList(forId: id)
             
-            /// Getting the corrent user rating
-            _ = ytOAuthSwift?.client.get(kYTRatingURL, parameters: paramaters, headers: nil,success: {
-                [unowned self, _id = id, _param = listParamaters] (response:OAuthSwiftResponse) in
-                
-                /// Getting the videos statistics
-                _ = self.ytOAuthSwift?.client.get(kYTStatisticsURL, parameters: _param, headers: nil, success: {
-                    [_response = response] (statisticResponse:OAuthSwiftResponse) in
+            let operation = BlockOperation(block: { 
+                /// Getting the corrent user rating
+                _ = self.ytOAuthSwift?.client.get(kYTRatingURL, parameters: paramaters, headers: nil,success: {
+                    [unowned self, _id = id, _param = listParamaters] (response:OAuthSwiftResponse) in
                     
-                    let (like, error) = self.getLikeObject(id: _id, fromResponse: response, statisticResponse: statisticResponse)
-                    handler(like, error)
+                    /// Getting the videos statistics
+                    _ = self.ytOAuthSwift?.client.get(kYTStatisticsURL, parameters: _param, headers: nil, success: {
+                        [_response = response] (statisticResponse:OAuthSwiftResponse) in
+                        
+                        let (like, error) = self.getLikeObject(id: _id, fromResponse: response, statisticResponse: statisticResponse)
+                        handler(like, error)
+                        
+                        }, failure: { (error: OAuthSwiftError) in
+                            handler(nil, error.toNSError)
+                    })
                     
                     }, failure: { (error: OAuthSwiftError) in
+                        print(error.errorUserInfo)
                         handler(nil, error.toNSError)
                 })
-                
-                }, failure: { (error: OAuthSwiftError) in
-                    print(error.errorUserInfo)
-                    handler(nil, error.toNSError)
             })
+            queue?.addOperation(operation)
+            queueDictionary["\(STOperation.like)_\(id)"] = operation
         }
     }
     
