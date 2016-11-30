@@ -650,10 +650,12 @@ open class STSocialManager: NSObject {
                     [_service = service] (credential, response, parameters) in
                     //Setting the refresh token
                     _service.token = credential.oauthToken
+                    self.delegate?.didLogin(type: .youtube, withError: nil)
                     print("YouTube Auto Login Access_Token: \(credential.oauthToken)")
                     }, failure: { [_service = service, unowned self] (error) in
                         //If token expires, clear existing token and reauthenticating the user
                         _service.logout()
+                        self.delegate?.didLogout(type: .youtube)
                         _ = self.__onceYTAuth
                         print(error.description)
                 })
