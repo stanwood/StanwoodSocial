@@ -19,6 +19,8 @@ public typealias STCommentHandler = (_ likeObject: STComment?, _ error: Error?) 
 // Instagram
 internal let kIGAuthorizeURL = "https://api.instagram.com/oauth/authorize"
 internal let kIGLikeURL = "https://api.instagram.com/v1/media/%@/likes?access_token=%@"
+internal let kIGMediaURL = "https://api.instagram.com/v1/media/%@/?access_token=%@"
+internal let kIGCommentURL = "https://api.instagram.com/v1/media/%@/comments?access_token=%@"
 
 // YouTube
 internal let kYTAuthorizeURL = "https://accounts.google.com/o/oauth2/auth"
@@ -26,6 +28,7 @@ internal let kYTAccessTokenURL = "https://accounts.google.com/o/oauth2/token"
 internal let kYTLikeURL = "https://www.googleapis.com/youtube/v3/videos/rate"
 internal let kYTRatingURL = "https://www.googleapis.com/youtube/v3/videos/getRating"
 internal let kYTStatisticsURL = "https://www.googleapis.com/youtube/v3/videos"
+internal let kYTCommentURL = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&key=%@"
 
 // MARK: Response Type
 
@@ -41,6 +44,12 @@ internal struct STParams {
     }
     
     // Facebook
+    static var fbGetComment: [String: Any] {
+        return [
+            "summary":"true",
+            "filter": "toplevel"
+        ]
+    }
     static func fbLike(forId id: String)-> [String: Any] {
         return [
             "id" : id,
@@ -62,6 +71,17 @@ internal struct STParams {
     }
     
     // YouTube
+    static func yt(comment: String, id: String) -> [String:Any] {
+        return [ "snippet":[
+            "topLevelComment":[
+                "snippet":[
+                    "textOriginal": comment,
+                    "videoId": id
+                ]
+            ]
+            ]
+        ]
+    }
     static func ytOAuth() -> [String: Any] {
         return [
             "access_type" : "offline",
@@ -139,17 +159,9 @@ internal enum STHTTPMethod: String {
 }
 
 // STSocialErrorDomain
-public class STSocialErrorDomain {
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let ytAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"YouTube OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure YouTube Service"])
-    /*public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
-    public static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])*/
+class STSocialErrorDomain {
+    static let igAuthError = NSError(domain: "STSocialErrorDomain", code: 1, userInfo: [NSLocalizedDescriptionKey:"Instagram OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure Instagram Service"])
+    static let ytAuthError = NSError(domain: "STSocialErrorDomain", code: 2, userInfo: [NSLocalizedDescriptionKey:"YouTube OAuth was not configured", NSLocalizedRecoverySuggestionErrorKey: "Configure YouTube Service"])
 }
 
 
