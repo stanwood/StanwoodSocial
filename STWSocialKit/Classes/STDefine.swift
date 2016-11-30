@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - typealias blocks
 
-public typealias STSuccessBlock = (_ success: Bool, error: Error?) -> Void
+public typealias STSuccessBlock = (_ success: Bool, _ error: Error?) -> Void
 public typealias STLikeHandler = (_ likeObject: STLike?, _ error: Error?) -> Void
 public typealias STCommentHandler = (_ likeObject: STComment?, _ error: Error?) -> Void
 

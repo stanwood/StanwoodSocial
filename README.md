@@ -192,7 +192,7 @@ guard let hasLiked = likeObject?.hasLiked,
 
 ```swift
 STSocialManager.shared.like(postID: [POST_ID], forSocialType: [STSocialType], handler: {
-    [weak self, id = post!.id] (success: Bool) in
+    [weak self, id = post!.id] (success: Bool, error: Error?) in
     DispatchQueue.main.async(execute: {
         if success {
             // Set current likeObject
@@ -210,7 +210,7 @@ STSocialManager.shared.like(postID: [POST_ID], forSocialType: [STSocialType], ha
 
 ```swift
 STSocialManager.shared.unlike(postID: [POST_ID], forSocialType: [STSocialType], handler: {
-    [weak self, id = post!.id] (success: Bool) in
+    [weak self, id = post!.id] (success: Bool, error: Error?) in
     DispatchQueue.main.async(execute: {
         if success {
             // Set current likeObject
