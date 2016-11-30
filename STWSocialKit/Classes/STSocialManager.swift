@@ -68,7 +68,7 @@ open class STSocialManager: NSObject {
     public static func handle(callbackURL url: URL) {
         if let host = url.host, host == "oauth-callback" {
             OAuthSwift.handle(url: url)
-        } else if let bundle = Bundle.main.bundleIdentifier, bundle == url.scheme {
+        } else if let bundle = Bundle.main.bundleIdentifier, bundle.lowercased() == url.scheme {
             // Google provider is the only one wuth your.bundle.id url schema.
             //OAuth2Swift.handle(url: url)
             OAuthSwift.handle(url: url)
@@ -734,9 +734,9 @@ open class STSocialManager: NSObject {
     fileprivate lazy var __onceYTAuth: () = {
         let state = self.generateState(withLength: 20)
         let parameters = STParams.ytOAuth()
-        let service = self.getService(forType: .youtube)
-
-        _ = self.ytOAuthSwift?.authorize(withCallbackURL: service?.callbackURI ?? "",
+        guard let service = self.getService(forType: .youtube) else { return }
+        
+        _ = self.ytOAuthSwift?.authorize(withCallbackURL: service.callbackURI ?? "",
                                          scope: STSocialScope.youtubeScope.rawValue,
                                          state: state,
                                          parameters: parameters,
