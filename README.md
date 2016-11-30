@@ -40,6 +40,8 @@ STSocialManager.configure(application: application, didFinishLaunchingWithOption
 // Configure Social Services
 let facebook = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .facebook)
 let instagram = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .instagram, callbackURI: [CALLBACK_URI])
+
+/// MARK: Google callback shoud be yourBundleIdentifier:/oauth2Callback
 let youtube = STSocialService(appID: [YOU_APP_ID], appSecret: [YOU_APP_SECRET], appType: .youtube, callbackURI: [CALLBACK_URI])
 
 let configurations = STSocialConfiguration(services: [facebook, instagram, youtube])
