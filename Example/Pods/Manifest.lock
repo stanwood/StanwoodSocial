@@ -16,7 +16,7 @@ PODS:
   - Locksmith (3.0.0)
   - OAuthSwift (1.1.0)
   - ObjectMapper (2.2.1)
-  - STWSocialKit (0.1.2):
+  - STWSocialKit (0.1.42):
     - FBSDKCoreKit (~> 4.17.0)
     - FBSDKLoginKit (~> 4.17.0)
     - FBSDKShareKit (~> 4.17.0)
@@ -30,12 +30,10 @@ DEPENDENCIES:
   - Kingfisher (~> 3.0)
   - Locksmith
   - OAuthSwift
-  - STWSocialKit (from `../`)
+  - STWSocialKit
   - YouTubePlayer (from `https://github.com/talezion/Swift-YouTube-Player`, commit `c18c39fad86e1cfb35380acd12b58fdaa57cdfe9`)
 
 EXTERNAL SOURCES:
-  STWSocialKit:
-    :path: "../"
   YouTubePlayer:
     :commit: c18c39fad86e1cfb35380acd12b58fdaa57cdfe9
     :git: https://github.com/talezion/Swift-YouTube-Player
@@ -55,9 +53,9 @@ SPEC CHECKSUMS:
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
   OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
-  STWSocialKit: '0912e71d684de6b9ac5e9aa6a26c171d6d02ac30'
+  STWSocialKit: 338c28074c57a717e9def55f9cd5bf4722b3bb5b
   YouTubePlayer: 162bd51d7a77b4b6ad914b0b87af07b7e81f8b70
 
-PODFILE CHECKSUM: 90ee0546018458609a063e48adc287322eb2adee
+PODFILE CHECKSUM: f0332f5b1e23d1c74af04f80d91db26681975498
 
 COCOAPODS: 1.1.1
