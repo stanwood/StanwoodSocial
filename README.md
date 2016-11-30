@@ -13,6 +13,16 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+#### Important:
+
+##### YouTube & Faceboook
+
+Any action will post on the author feed of course ;). 
+
+##### Instagram
+
+Instagram API Sandbox environment is boxed for any activity done outside the environement , which means you will not see any likes, and you cannot comment/ share. The API return `unknown media id`, unless the app is on Production. In the example project, we pass a post which is part of the Sandbox environement to see any activity. In order to view the likes, we need to add your `@username` to Instagram Sanbox app.  
+
 ## Installation
 
 STWSocialKit is available through [Stanwood](https://github.com/stanwood/Cocoa_Pods_Specs.git) master specs. To install
