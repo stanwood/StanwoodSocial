@@ -30,10 +30,12 @@ DEPENDENCIES:
   - Kingfisher (~> 3.0)
   - Locksmith
   - OAuthSwift
-  - STWSocialKit
+  - STWSocialKit (from `../`)
   - YouTubePlayer (from `https://github.com/talezion/Swift-YouTube-Player`, commit `c18c39fad86e1cfb35380acd12b58fdaa57cdfe9`)
 
 EXTERNAL SOURCES:
+  STWSocialKit:
+    :path: "../"
   YouTubePlayer:
     :commit: c18c39fad86e1cfb35380acd12b58fdaa57cdfe9
     :git: https://github.com/talezion/Swift-YouTube-Player
@@ -53,9 +55,9 @@ SPEC CHECKSUMS:
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
   OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
-  STWSocialKit: 338c28074c57a717e9def55f9cd5bf4722b3bb5b
+  STWSocialKit: 880e5cf9c387783c26767a44e53ff1893f1daf59
   YouTubePlayer: 162bd51d7a77b4b6ad914b0b87af07b7e81f8b70
 
-PODFILE CHECKSUM: f0332f5b1e23d1c74af04f80d91db26681975498
+PODFILE CHECKSUM: 90ee0546018458609a063e48adc287322eb2adee
 
 COCOAPODS: 1.1.1
