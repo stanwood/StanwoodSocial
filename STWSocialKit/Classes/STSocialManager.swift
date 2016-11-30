@@ -259,7 +259,7 @@ open class STSocialManager: NSObject {
             auth(forType: type)
             return
         }
-        
+
         /// Checking if we have a localised option
         let isDefault:Bool = strings == nil ? true : false
         

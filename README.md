@@ -235,11 +235,15 @@ if canComment {
 }
 ```
 
-This will show a standard pop up `textField` for the user to comment.
-
-`//TODO: Set a custom pop up option`
+This will show a standard pop up dialog `textField` for the user to comment.
 
 You can add a localised string object `STLocalizedCommentStrings`
+
+In case you want to set your own custom comment dialog, you can use: 
+
+```swift
+post(comment: [COMMENT], forObjectId: [POST_ID], type: [STSocialType])
+```
 
 #### Sharing a post
 
