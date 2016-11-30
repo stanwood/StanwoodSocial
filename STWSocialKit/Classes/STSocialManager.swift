@@ -287,7 +287,7 @@ open class STSocialManager: NSObject {
         case .instagram:
             
             let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-    
+            
             let param: [String: Any] = [
                 "text" : comment
             ]
@@ -370,7 +370,7 @@ open class STSocialManager: NSObject {
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.comment)_\(id)"] = operation
         case .instagram:
-         
+            
             let url = "https://api.instagram.com/v1/media/\(id)/comments?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
             
             _ = igOAuthSwift?.client.get(url,
@@ -433,7 +433,7 @@ open class STSocialManager: NSObject {
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.like)_\(id)"] = operation
         case .instagram:
-        
+            
             let url = "https://api.instagram.com/v1/media/\(id)/?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
             
             _ = igOAuthSwift?.client.get(url, success: {
@@ -511,6 +511,7 @@ open class STSocialManager: NSObject {
     /// Liking a social post for service
     
     public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) {
+        
         switch type {
         case .facebook:
             let request = FBSDKGraphRequest(graphPath: "\(id)/likes", parameters: [:], httpMethod: "POST")
@@ -525,7 +526,13 @@ open class STSocialManager: NSObject {
             })
         case .instagram:
             
-            let url = "https://api.instagram.com/v1/media/\(id)/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
+            // Checking if Instagram Auth service was configured
+            guard igOAuthSwift != nil else {
+                handler(false, STSocialErrorDomain.igAuthError)
+                return
+            }
+            
+            let url = String(format: kIGLikeURL, id, igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)
             
             _ = igOAuthSwift?.client.post(url,
                                           success: {
@@ -541,6 +548,13 @@ open class STSocialManager: NSObject {
                 handler(false, error.toNSError)
             })
         case .youtube:
+            
+            // Checking if YouTube Auth service was configured
+            guard ytOAuthSwift != nil else {
+                handler(false, STSocialErrorDomain.ytAuthError)
+                return
+            }
+            
             let paramaters = STParams.fbLike(forId: id)
             _ = ytOAuthSwift?.client.post(kYTLikeURL,
                                           parameters: paramaters,
@@ -564,21 +578,28 @@ open class STSocialManager: NSObject {
     public func unlike(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) {
         switch type {
         case .facebook:
-            let request = FBSDKGraphRequest(graphPath: "\(id)/likes", parameters: [:], httpMethod: "DELETE")
+            let request = FBSDKGraphRequest(graphPath: "\(id)/likes", parameters: [:], httpMethod: STHTTPMethod.DELETE.rawValue)
             _ = request?.start(completionHandler: {
                 (graphRequest, any, error) in
                 if error == nil {
                     if let dictionary = any as? [AnyHashable: Any], let success = dictionary["success"] as? Bool {
                         handler(success, nil)
                     }
+                } else {
+                    handler(false, error)
                 }
-                handler(false, error)
                 
             })
         case .instagram:
-          
+            
+            // Checking if Instagram Auth service was configured
+            guard igOAuthSwift != nil else {
+                handler(false, STSocialErrorDomain.igAuthError)
+                return
+            }
+            
             let url = "https://api.instagram.com/v1/media/\(id)/likes?access_token=\(igOAuthSwift == nil ? "" : igOAuthSwift!.client.credential.oauthToken)"
-           
+            
             _ = igOAuthSwift?.client.delete(url,
                                             success: {
                                                 (response) in
@@ -593,6 +614,13 @@ open class STSocialManager: NSObject {
                 handler(false, error.toNSError)
             })
         case .youtube:
+            
+            // Checking if YouTube Auth service was configured
+            guard ytOAuthSwift != nil else {
+                handler(false, STSocialErrorDomain.ytAuthError)
+                return
+            }
+            
             let paramaters = STParams.fbUnlike(forId: id)
             _ = ytOAuthSwift?.client.post(kYTLikeURL,
                                           parameters: paramaters,
