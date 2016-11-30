@@ -312,7 +312,7 @@ extension SMPostCell: YouTubePlayerDelegate {
     }
     
     func playerReady(_ videoPlayer: YouTubePlayerView) {
-        //isPlayer(hidden: false)
+        isPlayer(hidden: false)
     }
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
