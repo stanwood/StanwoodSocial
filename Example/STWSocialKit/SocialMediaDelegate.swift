@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import STWSocialKit
 
 protocol SocialMediaLoadDelegate {
     
@@ -20,8 +21,8 @@ class SocialMediaDelegate: CollectionDelegate {
         guard let post = cell.post else { return }
         
         // Canceling the operation task
-        //STSocialManager.shared.cancelOperation(forPostID: post.id ?? "", operation: .like)
-        //STSocialManager.shared.cancelOperation(forPostID: post.id ?? "", operation: .comment)
+        STSocialManager.shared.cancelOperation(forPostID: post.id ?? "", operation: .like)
+        STSocialManager.shared.cancelOperation(forPostID: post.id ?? "", operation: .comment)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         guard let viewController = currentViewController as? SocialMediaViewController else { return CGSize.zero }

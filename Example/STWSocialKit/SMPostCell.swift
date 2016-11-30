@@ -46,8 +46,8 @@ class SMPostCell: UICollectionViewCell {
     
     private var postType:PostType!
     var post:SMPost?
-    //private var commentObject: STComment?
-    //private var likeObject: STLike?
+    private var commentObject: STComment?
+    private var likeObject: STLike?
     
     weak var target:UIViewController?
     
@@ -56,7 +56,6 @@ class SMPostCell: UICollectionViewCell {
         
     }
     
-    /*
     @IBAction func socialAction(_ sender: UIButton) {
         guard let action = SocialAction(rawValue: sender.tag) else { return }
         guard post != nil else { return }
@@ -69,7 +68,8 @@ class SMPostCell: UICollectionViewCell {
             guard let type = STSocialType(rawValue: postType.rawValue) else { return }
             guard let canComment = commentObject?.canComment else { return }
             if canComment {
-                STSocialManager.shared.postComment(forObjectId: post!.id, type: type, withLocalizedStrings: nil)
+                let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
+                STSocialManager.shared.postComment(forObjectId: id, type: type, withLocalizedStrings: nil)
             }
         case .share:
             guard let type = STSocialType(rawValue: postType.rawValue) else { return }
@@ -77,9 +77,9 @@ class SMPostCell: UICollectionViewCell {
             do {
                 try STSocialManager.shared.share(postLink: likeObject?.shareLink ?? "", forType: type, localizedStrings: nil, withPostTitle: post!.author.name, postText: post!.text, postImageURL: post!.image, image: postImage.image)
             } catch STSocialError.shareError(let message) {
-                AppController.sharedController.logResponse(message)
+                print(message)
             } catch {
-                AppController.sharedController.logResponse(error.localizedDescription)
+                print(error.localizedDescription)
             }
         }
     }
@@ -140,14 +140,15 @@ class SMPostCell: UICollectionViewCell {
     
     private func getCommentObject() {
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.getComment(bjectID: post?.id ?? "", forType: type, handler: {
+        STSocialManager.shared.getComment(objectID: id, forType: type, handler: {
             [weak self] (commentObject, error) in
             if error == nil, commentObject != nil {
                 self?.commentObject = commentObject
             } else {
                 if error != nil {
-                    AppController.sharedController.recordError(error!)
+                    print(error!)
                 }
             }
         })
@@ -155,8 +156,9 @@ class SMPostCell: UICollectionViewCell {
     
     private func getLikeObject() {
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
-
-        STSocialManager.shared.getLike(objectID: post?.id ?? "", forType: type, handler: {
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
+        
+        STSocialManager.shared.getLike(objectID: id, forType: type, handler: {
             [weak self] (likeObject, error) in
             DispatchQueue.main.async(execute: {
                 if error == nil, let _likeObject = likeObject {
@@ -172,7 +174,7 @@ class SMPostCell: UICollectionViewCell {
                     self?.likesLabel.text = _likeObject.countString
                 } else {
                     if error != nil {
-                        AppController.sharedController.recordError(error!)
+                        print(error!)
                     }
                 }
             })
@@ -227,15 +229,16 @@ class SMPostCell: UICollectionViewCell {
     fileprivate func like(sender: UIButton){
         guard let type = STSocialType(rawValue: postType.rawValue),
             (likeObject?.canLike)! else { return }
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.like(postID: post!.id, forSocialType: type, handler: {
-            [weak self, id = post!.id] (success: Bool) in
+        STSocialManager.shared.like(postID: id, forSocialType: type, handler: {
+            [weak self, id = post!.id] (success: Bool, error: Error?) in
             DispatchQueue.main.async(execute: {
                 if success {
                     self?.likeObject?.hasLiked = true
                     sender.setImage(UIImage(named: SocialImage.like.rawValue), for: .normal)
                 } else {
-                    AppController.sharedController.logResponse("Failed do liek post id\(id)")
+                    print("Failed do liek post id\(id)")
                 }
             })
         })
@@ -243,15 +246,16 @@ class SMPostCell: UICollectionViewCell {
     
     fileprivate func unlike(sender: UIButton){
         guard let type = STSocialType(rawValue: postType.rawValue) else { return }
+        let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.unlike(postID: post!.id, forSocialType: type, handler: {
-            [weak self, id = post!.id] (success: Bool) in
+        STSocialManager.shared.unlike(postID: id, forSocialType: type, handler: {
+            [weak self, id = post!.id] (success: Bool, error: Error?) in
             DispatchQueue.main.async {
                 if success {
                     self?.likeObject?.hasLiked = false
                     sender.setImage(UIImage(named: SocialImage.unlike.rawValue), for: .normal)
                 } else {
-                    AppController.sharedController.logResponse("Failed do liek post id\(id)")
+                    print("Failed do liek post id\(id)")
                 }
             }
         })
@@ -299,7 +303,6 @@ class SMPostCell: UICollectionViewCell {
             playerView.alpha = 1
         }
     }
- */
 }
 
 extension SMPostCell: YouTubePlayerDelegate {
@@ -309,7 +312,7 @@ extension SMPostCell: YouTubePlayerDelegate {
     }
     
     func playerReady(_ videoPlayer: YouTubePlayerView) {
-        //isPlayer(hidden: false)
+        isPlayer(hidden: false)
     }
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {

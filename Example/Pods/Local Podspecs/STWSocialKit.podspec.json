@@ -1,6 +1,6 @@
 {
   "name": "STWSocialKit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "summary": "Wrapper for social media SDKs",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/stanwood/STWSocialKit",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/stanwood/STWSocialKit.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "9.3"

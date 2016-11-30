@@ -12,6 +12,10 @@ import FBSDKLoginKit
 public struct STSocialConfiguration {
     var services:[STSocialService]
     
+    public init (services: [STSocialService]){
+        self.services = services
+    }
+    
     public func logout(){
         for service in services {
             logout(service: service)

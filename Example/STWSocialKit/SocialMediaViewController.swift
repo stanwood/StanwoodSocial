@@ -19,18 +19,18 @@ class SocialMediaViewController: UIViewController {
     fileprivate var items:SMPosts?
     fileprivate var activityIndictor:UIActivityIndicatorView!
     
-    var socialUrl:String!
+    var socialUrl:URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /// Setting OAuth handler
-        //STSocialManager.shared.set(target: self)
-        
+        STSocialManager.shared.set(target: self)
+        STSocialManager.shared.delegate = self
         
         collectionView.allowsSelection = false
  
-        loadData(withUrl: socialUrl)
+        loadData(withUrl: socialUrl.absoluteString)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,7 +40,7 @@ class SocialMediaViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        //STSocialManager.shared.cancelAllOperations()
+        STSocialManager.shared.cancelAllOperations()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,12 +52,6 @@ class SocialMediaViewController: UIViewController {
         activityIndictor.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height * 0.95)
         view.addSubview(activityIndictor)
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
-    }
-
     
     fileprivate func loadData(withUrl url: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -85,13 +79,24 @@ class SocialMediaViewController: UIViewController {
     }
     
     fileprivate func configureDataSource(){
+        let nib = UINib(nibName: "SMPostCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "SMPostCell")
         
-//        collectionView.register(UINib("SMPostCell","SMPostCell"), forCellWithReuseIdentifier: nil)
-//        
-//        self.dataSource = SocialMediaDataSource(dataObject: self.items, currentViewController: self)
-//        self.delegate = SocialMediaDelegate(currentViewController: self, dataObject: self.filteredItems)
-//        
-//        self.collectionView.dataSource = self.dataSource
-//        self.collectionView.delegate = self.delegate
+        self.dataSource = SocialMediaDataSource(dataObject: self.items, currentViewController: self)
+        self.delegate = SocialMediaDelegate(currentViewController: self, dataObject: self.items)
+        
+        self.collectionView.dataSource = self.dataSource
+        self.collectionView.delegate = self.delegate
+    }
+}
+
+extension SocialMediaViewController: STSocialManagerDelegate {
+    
+    func didLogout(type: STSocialType?) {
+        collectionView.reloadData()
+    }
+    
+    func didLogin(type: STSocialType, withError error: Error?) {
+        collectionView.reloadData()
     }
 }

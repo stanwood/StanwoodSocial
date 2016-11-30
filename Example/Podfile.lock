@@ -12,10 +12,11 @@ PODS:
   - FBSDKShareKit (4.17.0):
     - FBSDKCoreKit
   - FontAwesome.swift (1.0.0)
+  - Kingfisher (3.2.1)
   - Locksmith (3.0.0)
   - OAuthSwift (1.1.0)
   - ObjectMapper (2.2.1)
-  - STWSocialKit (0.1.1):
+  - STWSocialKit (0.1.2):
     - FBSDKCoreKit (~> 4.17.0)
     - FBSDKLoginKit (~> 4.17.0)
     - FBSDKShareKit (~> 4.17.0)
@@ -26,6 +27,7 @@ PODS:
 
 DEPENDENCIES:
   - FontAwesome.swift
+  - Kingfisher (~> 3.0)
   - Locksmith
   - OAuthSwift
   - STWSocialKit (from `../`)
@@ -49,12 +51,13 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 42b7129ac0373ca99eaf4cbebf4d07bd42371f59
   FBSDKShareKit: 9b573d03fbee36cbaf42d5bb1f2bc019e0d72347
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
+  Kingfisher: 64ef28c6d3d6f344e3ae2d7f5c9da80439505d99
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
   OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
-  STWSocialKit: 3e6d45c77ead3bb64bdb82b0fce657f98224a25e
+  STWSocialKit: '0912e71d684de6b9ac5e9aa6a26c171d6d02ac30'
   YouTubePlayer: 162bd51d7a77b4b6ad914b0b87af07b7e81f8b70
 
-PODFILE CHECKSUM: 4a670b2e6f960b03c838642d6b1de97cf7bb6cc7
+PODFILE CHECKSUM: 90ee0546018458609a063e48adc287322eb2adee
 
 COCOAPODS: 1.1.1
