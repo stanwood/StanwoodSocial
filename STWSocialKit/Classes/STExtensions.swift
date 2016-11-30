@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import OAuthSwift
 
 extension Double {
     /// Rounds the double to decimal places value
@@ -16,3 +17,10 @@ extension Double {
     }
 }
 
+public extension OAuthSwiftError {
+    
+    public var toNSError: NSError {
+        return NSError(domain: self._domain, code: self._code, userInfo: self.errorUserInfo)
+    }
+    
+}

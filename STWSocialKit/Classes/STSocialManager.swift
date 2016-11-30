@@ -424,6 +424,7 @@ open class STSocialManager: NSObject {
                             handler(nil, nil)
                         }
                     } else {
+                        
                         handler(nil, error)
                     }
                 })
@@ -497,13 +498,12 @@ open class STSocialManager: NSObject {
                                                                                 }
                                                                                 
                                                 }, failure: { (error: OAuthSwiftError) in
-                                                    print(error.errorUserInfo)
-                                                    handler(nil, error)
+                                                    handler(nil, error.toNSError)
                                             })
                                             
                 }, failure: { (error: OAuthSwiftError) in
                     print(error.errorUserInfo)
-                    handler(nil, error)
+                    handler(nil, error.toNSError)
             })
         }
     }
@@ -518,10 +518,10 @@ open class STSocialManager: NSObject {
                 (graphRequest, any, error) in
                 if error == nil {
                     if let dictionary = any as? [AnyHashable: Any], let success = dictionary["success"] as? Bool {
-                        handler(success)
+                        handler(success, nil)
                     }
                 }
-                handler(false)
+                handler(false, error)
             })
         case .instagram:
             
@@ -532,13 +532,13 @@ open class STSocialManager: NSObject {
                                             (response) in
                                             switch response.response.statusCode {
                                             case 200:
-                                                handler(true)
+                                                handler(true, nil)
                                             default:
-                                                handler(false)
+                                                handler(false, nil)
                                             }
             }, failure: { (error: OAuthSwiftError) in
                 print(error.description)
-                handler(false)
+                handler(false, error.toNSError)
             })
         case .youtube:
             let paramaters = STParams.fbLike(forId: id)
@@ -549,12 +549,12 @@ open class STSocialManager: NSObject {
                                           success: { (response) in
                                             print(response.response.description)
                                             if response.response.statusCode == 204 {
-                                                handler(true)
+                                                handler(true, nil)
                                             } else {
-                                                handler(false)
+                                                handler(false, nil)
                                             }
             }, failure: { (error:OAuthSwiftError) in
-                print(error.errorUserInfo)
+                print(error.errorUserInfo, error.toNSError)
             })
         }
     }
@@ -569,10 +569,10 @@ open class STSocialManager: NSObject {
                 (graphRequest, any, error) in
                 if error == nil {
                     if let dictionary = any as? [AnyHashable: Any], let success = dictionary["success"] as? Bool {
-                        handler(success)
+                        handler(success, nil)
                     }
                 }
-                handler(false)
+                handler(false, error)
                 
             })
         case .instagram:
@@ -584,13 +584,13 @@ open class STSocialManager: NSObject {
                                                 (response) in
                                                 switch response.response.statusCode {
                                                 case 200:
-                                                    handler(true)
+                                                    handler(true, nil)
                                                 default:
-                                                    handler(false)
+                                                    handler(false, nil)
                                                 }
             }, failure: { (error: OAuthSwiftError) in
                 print(error.description)
-                handler(false)
+                handler(false, error.toNSError)
             })
         case .youtube:
             let paramaters = STParams.fbUnlike(forId: id)
@@ -601,12 +601,12 @@ open class STSocialManager: NSObject {
                                           success: { (response) in
                                             print(response.dataString() ?? "")
                                             if response.response.statusCode == 204 {
-                                                handler(true)
+                                                handler(true, nil)
                                             } else {
-                                                handler(false)
+                                                handler(false, nil)
                                             }
             }, failure: { (error) in
-                print(error.localizedDescription)
+                print(error.toNSError)
             })
         }
     }
