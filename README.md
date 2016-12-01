@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img src="Assets/STWSocial-Icon.png?raw=true" alt="STWSocialKit"/>
+    <img src="Assets/STWSocial-Icon.png?raw=false" alt="STWSocialKit"/>
 </p>
 
 
