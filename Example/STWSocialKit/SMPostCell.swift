@@ -69,7 +69,7 @@ class SMPostCell: UICollectionViewCell {
             guard let canComment = commentObject?.canComment else { return }
             if canComment {
                 let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
-                STSocialManager.shared.postComment(forObjectId: id, type: type, withLocalizedStrings: nil)
+                STSocialManager.shared.postComment(channel: post?.author.channelId, withObjectID: id, type: type, withLocalizedStrings: nil)
             }
         case .share:
             guard let type = STSocialType(rawValue: postType.rawValue) else { return }

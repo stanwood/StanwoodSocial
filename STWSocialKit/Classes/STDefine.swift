@@ -72,12 +72,13 @@ internal struct STParams {
     }
     
     // YouTube
-    static func yt(comment: String, id: String) -> [String:Any] {
+    static func yt(comment: String, channel: String, id: String) -> [String:Any] {
         return [ "snippet":[
+            "channelId" : channel,
+            "videoId": id,
             "topLevelComment":[
                 "snippet":[
-                    "textOriginal": comment,
-                    "videoId": id
+                    "textOriginal": comment
                 ]
             ]
             ]

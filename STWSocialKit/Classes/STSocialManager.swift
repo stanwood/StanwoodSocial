@@ -242,7 +242,7 @@ open class STSocialManager: NSObject {
     // MARK: - Social Actions
     
     // An option to post a comment with a custom pop up
-    public func post(comment: String, forObjectId id: String, type: STSocialType) {
+    public func post(comment: String, channel: String?, withObjectID id: String, type: STSocialType) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             auth(forType: type)
@@ -250,16 +250,16 @@ open class STSocialManager: NSObject {
         }
         
         // Post comment
-        self.comment(objectID: id, forType: type, comment: comment)
+        self.comment(channel: channel, withObjectID: id, forType: type, comment: comment)
     }
     
-    public func postComment(forObjectId id: String, type: STSocialType, withLocalizedStrings strings:STLocalizedCommentStrings?) {
+    public func postComment(channel: String?, withObjectID id: String, type: STSocialType, withLocalizedStrings strings:STLocalizedCommentStrings?) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             auth(forType: type)
             return
         }
-
+        
         /// Checking if we have a localised option
         let isDefault:Bool = strings == nil ? true : false
         
@@ -268,7 +268,7 @@ open class STSocialManager: NSObject {
         let send = UIAlertAction(title: isDefault ? "Send" : strings!.send, style: .default) {
             (action) in
             if let textField = alertSheet.textFields?.first {
-                self.comment(objectID: id, forType: type, comment: textField.text ?? "")
+                self.comment(channel: channel, withObjectID: id, forType: type, comment: textField.text ?? "")
             }
         }
         
@@ -286,7 +286,7 @@ open class STSocialManager: NSObject {
     /*
      GET social service like object
      */
-    fileprivate func comment(objectID id: String, forType type: STSocialType, comment: String) {
+    fileprivate func comment(channel: String?, withObjectID id: String, forType type: STSocialType, comment: String) {
         
         switch type {
         case .facebook:
@@ -303,17 +303,12 @@ open class STSocialManager: NSObject {
             }
             
             let url = String(format: kIGCommentURL, id, igOAuthSwift!.client.credential.oauthToken)
-        
+            
             let param = STParams.ig(comment: comment)
-                
-            _ = igOAuthSwift?.client.post(url,
-                                          parameters: param,
-                                          headers: nil,
-                                          body: nil,
-                                          success: {
-                                            (response) in
-                                            
-                                            print("Posting comment - statusCode: \(response.response.statusCode)")
+            
+            _ = igOAuthSwift?.client.post(url, parameters: param,  headers: nil, body: nil,  success: {
+                (response) in
+                print("Posting comment - statusCode: \(response.response.statusCode)")
             }, failure: { (error:OAuthSwiftError) in
                 print(error.description)
             })
@@ -323,16 +318,14 @@ open class STSocialManager: NSObject {
                 return
             }
             
-            //TODO: Fix YouTube comment
-            
-            let body: [String: Any] = STParams.yt(comment: comment, id: id)
+            let body: [String: Any] = STParams.yt(comment: comment, channel: channel ?? "", id: id)
             
             let service = getService(forType: .youtube)
-            let urlString = String(format: kYTCommentURL, service!.appID)
+            let urlString = String(format: kYTCommentURL, ytOAuthSwift!.client.credential.oauthToken)
             
-            let data = try! JSONSerialization.data(withJSONObject: body, options: [])
+            let data = try! JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
             
-            _ = igOAuthSwift?.client.post(urlString, parameters: [:], headers: nil, body: data, success: { (response) in
+            _ = ytOAuthSwift?.client.post(urlString, parameters: [:], headers: ["Content-Type":"application/json"], body: data, success: { (response) in
                 print(response.response.description)
             }, failure: { (error: OAuthSwiftError) in
                 print(error.description)
@@ -394,18 +387,18 @@ open class STSocialManager: NSObject {
             
             let url =  String(format: kIGCommentURL, id, igOAuthSwift!.client.credential.oauthToken)
             
-            let operation = BlockOperation(block: { 
+            let operation = BlockOperation(block: {
                 _ = self.igOAuthSwift?.client.get(url,
-                                             success: { (response:OAuthSwiftResponse) in
-                                                do {
-                                                    if let jsonDict = try response.jsonObject() as? [String:Any] {
-                                                        let map = Map(mappingType: .fromJSON, JSON: jsonDict)
-                                                        let _ = STComment(map: map, id: "")
-                                                        //TODO: Set comment object if needed
+                                                  success: { (response:OAuthSwiftResponse) in
+                                                    do {
+                                                        if let jsonDict = try response.jsonObject() as? [String:Any] {
+                                                            let map = Map(mappingType: .fromJSON, JSON: jsonDict)
+                                                            let _ = STComment(map: map, id: "")
+                                                            //TODO: Set comment object if needed
+                                                        }
+                                                    } catch {
+                                                        print(error)
                                                     }
-                                                } catch {
-                                                    print(error)
-                                                }
                 }, failure: { (error:OAuthSwiftError) in
                     print(error.description)
                 })
@@ -469,7 +462,7 @@ open class STSocialManager: NSObject {
             
             let url =  String(format: kIGMediaURL, id, igOAuthSwift!.client.credential.oauthToken)
             
-            let operation = BlockOperation(block: { 
+            let operation = BlockOperation(block: {
                 _ = self.igOAuthSwift?.client.get(url, success: {
                     (response) in
                     do {
@@ -503,7 +496,7 @@ open class STSocialManager: NSObject {
             let paramaters = STParams.ytId(forId: id)
             let listParamaters = STParams.ytList(forId: id)
             
-            let operation = BlockOperation(block: { 
+            let operation = BlockOperation(block: {
                 /// Getting the corrent user rating
                 _ = self.ytOAuthSwift?.client.get(kYTRatingURL, parameters: paramaters, headers: nil,success: {
                     [unowned self, _id = id, _param = listParamaters] (response:OAuthSwiftResponse) in
@@ -930,10 +923,10 @@ extension STSocialManager: OAuthWebViewControllerDelegate {
     #if os(iOS) || os(tvOS)
     
     public func oauthWebViewControllerDidPresent() {
-        
+    
     }
     public func oauthWebViewControllerDidDismiss() {
-        
+    
     }
     #endif
     

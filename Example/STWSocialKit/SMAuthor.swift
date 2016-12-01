@@ -14,6 +14,15 @@ struct SMAuthor {
     var imageUrl:String!
     var name:String!
     
+    var channelId :String? {
+        let compponents = url.components(separatedBy: "channel/")
+        
+        if compponents.count > 1 {
+            return compponents[1]
+        }
+        return nil
+    }
+    
     init(map:Map){
         url <- map[PostKey.url.rawValue]
         imageUrl <- map[PostKey.image_url.rawValue]
