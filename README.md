@@ -241,7 +241,6 @@ guard let canComment = commentObject?.canComment else { return }
 
 if canComment {
     /// Post comment
-    STSocialManager.shared.postComment(channel: post?.author.channelId, withObjectID: [POST_ID], type: [STSocialType], withLocalizedStrings: nil)
     STSocialManager.shared.postComment(forObjectId: [POST_ID], type: [STSocialType], withLocalizedStrings: nil)
 }
 ```
@@ -261,7 +260,7 @@ post(comment: [COMMENT], forObjectId: [POST_ID], type: [STSocialType])
 Posting a comment on a YouTube Video, we would need to pass the channel:
 
 ```swift
-STSocialManager.shared.postComment(channel: [CHANNEL_ID], withObjectID: [POST_ID], type: [STSocialType], withLocalizedStrings: [STLocalizedCommentStrings?])
+STSocialManager.shared.postComment(channel: [CHANNEL_ID], withObjectID: [POST_ID], type: [STSocialType], withLocalizedStrings: nil)
 
 // Or with a custom pop up dialog
 STSocialManager.shared.post(toChannel: [CHANNEL_ID], comment: [COMMENT], withObjectID: [POST_ID], type: [STSocialType])
