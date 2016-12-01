@@ -66,7 +66,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpe
     /// Handling callback
     STSocialManager.handle(callbackURL: url)
 
-    Confiugring with sheme
+    /// Confiugring with scheme
     return STSocialManager.configure(app: app, open: url, options: options)
 }
 
