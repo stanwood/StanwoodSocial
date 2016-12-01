@@ -242,7 +242,7 @@ open class STSocialManager: NSObject {
     // MARK: - Social Actions
     
     // An option to post a comment with a custom pop up
-    public func post(comment: String, channel: String?, withObjectID id: String, type: STSocialType) {
+    public func post(toChannel channel: String? = nil, comment: String, withObjectID id: String, type: STSocialType) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             auth(forType: type)
@@ -253,7 +253,7 @@ open class STSocialManager: NSObject {
         self.comment(channel: channel, withObjectID: id, forType: type, comment: comment)
     }
     
-    public func postComment(channel: String?, withObjectID id: String, type: STSocialType, withLocalizedStrings strings:STLocalizedCommentStrings?) {
+    public func postComment(channel: String? = nil, withObjectID id: String, type: STSocialType, withLocalizedStrings strings:STLocalizedCommentStrings?) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             auth(forType: type)

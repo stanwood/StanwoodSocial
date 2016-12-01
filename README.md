@@ -241,6 +241,7 @@ guard let canComment = commentObject?.canComment else { return }
 
 if canComment {
     /// Post comment
+    STSocialManager.shared.postComment(channel: post?.author.channelId, withObjectID: [POST_ID], type: [STSocialType], withLocalizedStrings: nil)
     STSocialManager.shared.postComment(forObjectId: [POST_ID], type: [STSocialType], withLocalizedStrings: nil)
 }
 ```
@@ -255,6 +256,16 @@ In case you want to set your own custom comment dialog, you can use:
 post(comment: [COMMENT], forObjectId: [POST_ID], type: [STSocialType])
 ```
 
+##### YouTube
+
+Posting a comment to a YouTube Video, we would need to pass the channel:
+
+```swift
+STSocialManager.shared.postComment(channel: <#T##String?#>, withObjectID: <#T##String#>, type: <#T##STSocialType#>, withLocalizedStrings: <#T##STLocalizedCommentStrings?#>)
+
+// Or with a custom pop up dialog
+STSocialManager.shared.post(toChannel: <#T##String?#>, comment: <#T##String#>, withObjectID: <#T##String#>, type: <#T##STSocialType#>)
+```
 #### Sharing a post
 
 To share a post, use:
