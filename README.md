@@ -258,13 +258,13 @@ post(comment: [COMMENT], forObjectId: [POST_ID], type: [STSocialType])
 
 ##### YouTube
 
-Posting a comment to a YouTube Video, we would need to pass the channel:
+Posting a comment on a YouTube Video, we would need to pass the channel:
 
 ```swift
-STSocialManager.shared.postComment(channel: <#T##String?#>, withObjectID: <#T##String#>, type: <#T##STSocialType#>, withLocalizedStrings: <#T##STLocalizedCommentStrings?#>)
+STSocialManager.shared.postComment(channel: [CHANNEL_ID], withObjectID: [POST_ID], type: [STSocialType], withLocalizedStrings: [STLocalizedCommentStrings?])
 
 // Or with a custom pop up dialog
-STSocialManager.shared.post(toChannel: <#T##String?#>, comment: <#T##String#>, withObjectID: <#T##String#>, type: <#T##STSocialType#>)
+STSocialManager.shared.post(toChannel: [CHANNEL_ID], comment: [COMMENT], withObjectID: [POST_ID], type: [STSocialType])
 ```
 #### Sharing a post
 
