@@ -38,10 +38,12 @@ TODO: Add long description of the pod here.
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'Social'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'OAuthSwift', '~> 1.1.0'
+  # s.dependency 'OAuthSwift', '~> 1.1.0'
   s.dependency 'Locksmith', '~> 3.0.0'
   s.dependency 'ObjectMapper', '~> 2.2.1'
   s.dependency 'FBSDKCoreKit', '~> 4.17.0'
   s.dependency 'FBSDKShareKit', '~> 4.17.0'
   s.dependency 'FBSDKLoginKit', '~> 4.17.0'
+
+  s.ios.vendored_frameworks = 'Carthage/Build/iOS/*.framework'
 end
