@@ -45,5 +45,6 @@ TODO: Add long description of the pod here.
   s.dependency 'FBSDKShareKit', '~> 4.17.0'
   s.dependency 'FBSDKLoginKit', '~> 4.17.0'
 
+  s.preserve_paths = 'Carthage/Build/iOS/*.framework'
   s.ios.vendored_frameworks = 'Carthage/Build/iOS/*.framework'
 end
