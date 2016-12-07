@@ -8,7 +8,6 @@
 
 import UIKit
 import STWSocialKit
-import OAuthSwift
 
 class SocialMediaViewController: UIViewController {
 

@@ -14,14 +14,12 @@ PODS:
   - FontAwesome.swift (1.0.0)
   - Kingfisher (3.2.1)
   - Locksmith (3.0.0)
-  - OAuthSwift (1.1.0)
   - ObjectMapper (2.2.1)
   - STWSocialKit (0.1.44):
     - FBSDKCoreKit (~> 4.17.0)
     - FBSDKLoginKit (~> 4.17.0)
     - FBSDKShareKit (~> 4.17.0)
     - Locksmith (~> 3.0.0)
-    - OAuthSwift (~> 1.1.0)
     - ObjectMapper (~> 2.2.1)
   - YouTubePlayer (0.3.0)
 
@@ -29,11 +27,12 @@ DEPENDENCIES:
   - FontAwesome.swift
   - Kingfisher (~> 3.0)
   - Locksmith
-  - OAuthSwift
-  - STWSocialKit
+  - STWSocialKit (from `../`)
   - YouTubePlayer (from `https://github.com/talezion/Swift-YouTube-Player`, commit `c18c39fad86e1cfb35380acd12b58fdaa57cdfe9`)
 
 EXTERNAL SOURCES:
+  STWSocialKit:
+    :path: "../"
   YouTubePlayer:
     :commit: c18c39fad86e1cfb35380acd12b58fdaa57cdfe9
     :git: https://github.com/talezion/Swift-YouTube-Player
@@ -51,11 +50,10 @@ SPEC CHECKSUMS:
   FontAwesome.swift: 2d32a3d62195343c2004b7c9043294ed2948553a
   Kingfisher: 64ef28c6d3d6f344e3ae2d7f5c9da80439505d99
   Locksmith: 310b4cc5031af5728bf4db5d4de547a5100c6a3b
-  OAuthSwift: 7ec2c62274f6bdc30b1ba3b799c39a6fdcaea0e5
   ObjectMapper: 41e43e1a89f8060ef5ea5d04ba852e269a621d68
-  STWSocialKit: 45eec268da483035af65ee1c03ce487456cd63ae
+  STWSocialKit: 7641b975b322ffa352584031d7756347ccc89d0f
   YouTubePlayer: 162bd51d7a77b4b6ad914b0b87af07b7e81f8b70
 
-PODFILE CHECKSUM: b562b85ae5b79d1f0cc70f5fbf6d8d75a65e13d7
+PODFILE CHECKSUM: 25d61a1be95f1de58c3a3db21bec0a55a9c55fe5
 
 COCOAPODS: 1.1.1
