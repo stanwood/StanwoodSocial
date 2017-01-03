@@ -1,6 +1,6 @@
 {
   "name": "STWSocialKit",
-  "version": "0.1.44",
+  "version": "0.1.48",
   "summary": "Wrapper for social media SDKs",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/stanwood/STWSocialKit",
@@ -13,12 +13,15 @@
   },
   "source": {
     "git": "https://github.com/stanwood/STWSocialKit.git",
-    "tag": "0.1.44"
+    "tag": "0.1.48"
   },
   "platforms": {
     "ios": "9.3"
   },
+  "requires_arc": true,
   "source_files": "STWSocialKit/Classes/**/*",
+  "resource_bundles": {
+  },
   "frameworks": "Social",
   "dependencies": {
     "Locksmith": [
@@ -37,7 +40,8 @@
       "~> 4.17.0"
     ]
   },
+  "preserve_paths": "Carthage/Build/iOS/OAuthSwift.framework",
   "ios": {
-    "vendored_frameworks": "Carthage/Build/iOS/*.framework"
+    "vendored_frameworks": "Carthage/Build/iOS/OAuthSwift.framework"
   }
 }

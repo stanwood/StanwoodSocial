@@ -6,7 +6,7 @@ use_frameworks!
 
 target 'STWSocialKit_Example' do
     pod 'STWSocialKit', :path => '../'
-    #pod 'OAuthSwift'
+    pod 'OAuthSwift'
     pod 'Locksmith'
     pod 'YouTubePlayer', :git => 'https://github.com/talezion/Swift-YouTube-Player', :commit => 'c18c39fad86e1cfb35380acd12b58fdaa57cdfe9'
     pod 'FontAwesome.swift'

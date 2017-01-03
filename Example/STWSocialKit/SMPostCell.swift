@@ -24,6 +24,10 @@ enum SocialImage: String {
     case unlike = "sot_social_like"
 }
 
+protocol SMPostCellDelegate {
+    func auth(type: PostType)
+}
+
 class SMPostCell: UICollectionViewCell {
     
     @IBOutlet weak var postImageHeightLayoutConstraints: NSLayoutConstraint!
@@ -49,6 +53,7 @@ class SMPostCell: UICollectionViewCell {
     private var commentObject: STComment?
     private var likeObject: STLike?
     
+    var delegate: SMPostCellDelegate?
     weak var target:UIViewController?
     
     override func awakeFromNib() {
@@ -57,22 +62,34 @@ class SMPostCell: UICollectionViewCell {
     }
     
     @IBAction func socialAction(_ sender: UIButton) {
-        guard let action = SocialAction(rawValue: sender.tag) else { return }
+        guard let action = SocialAction(rawValue: sender.tag),
+            let type = STSocialType(rawValue: postType.rawValue) else { return }
+        
         guard post != nil else { return }
         
         switch action {
         case .like:
-            guard let hasLiked = likeObject?.hasLiked else { return }
+            guard let hasLiked = likeObject?.hasLiked else {
+                delegate?.auth(type: postType)
+                return
+            }
+            
             hasLiked ? unlike(sender: sender) : like(sender: sender)
         case .comment:
-            guard let type = STSocialType(rawValue: postType.rawValue) else { return }
-            guard let canComment = commentObject?.canComment else { return }
+            guard let canComment = commentObject?.canComment else {
+                delegate?.auth(type: postType)
+                return
+            }
+            
             if canComment {
                 let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
                 STSocialManager.shared.postComment(channel: post?.author.channelId, withObjectID: id, type: type, withLocalizedStrings: nil)
             }
         case .share:
-            guard let type = STSocialType(rawValue: postType.rawValue) else { return }
+            guard let _ = likeObject else {
+                delegate?.auth(type: postType)
+                return
+            }
             
             do {
                 try STSocialManager.shared.share(postLink: likeObject?.shareLink ?? "", forType: type, localizedStrings: nil, withPostTitle: post!.author.name, postText: post!.text, postImageURL: post!.image, image: postImage.image)

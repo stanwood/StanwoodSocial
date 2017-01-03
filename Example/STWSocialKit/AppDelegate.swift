@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let configurations = STSocialConfiguration(services: [facebook, instagram, youtube])
         
         _ = STSocialManager.shared.set(configurations: configurations)
+        STSocialManager.shared.isDynamicLogin = false
         
         return true
     }

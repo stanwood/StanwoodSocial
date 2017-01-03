@@ -27,6 +27,7 @@ class SocialMediaDataSource: CollectionDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SMPostCell", for: indexPath) as! SMPostCell
         let post = (dataObject as! SMPosts).items[indexPath.row]
+        cell.delegate = viewController
         cell.fill(withPost: post, target: viewController)
         
         return cell

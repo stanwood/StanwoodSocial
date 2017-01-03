@@ -89,6 +89,13 @@ class SocialMediaViewController: UIViewController {
     }
 }
 
+extension SocialMediaViewController: SMPostCellDelegate {
+    func auth(type: PostType) {
+        guard let serviceType = STSocialType(rawValue: type.rawValue) else { return }
+        STSocialManager.shared.auth(forType: serviceType)
+    }
+}
+
 extension SocialMediaViewController: STSocialManagerDelegate {
     
     func didLogout(type: STSocialType?) {

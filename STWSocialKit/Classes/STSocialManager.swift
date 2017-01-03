@@ -59,6 +59,8 @@ open class STSocialManager: NSObject {
         }
     }
     
+    public var isDynamicLogin:Bool = true
+    
     private override init(){
         super.init()
     }
@@ -339,7 +341,10 @@ open class STSocialManager: NSObject {
     public func getComment(objectID id: String, forType type: STSocialType, handler: @escaping STCommentHandler) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
-            auth(forType: type)
+            if isDynamicLogin {
+                auth(forType: type)
+            }
+            
             handler(nil, nil)
             return
         }
@@ -417,7 +422,10 @@ open class STSocialManager: NSObject {
     public func getLike(objectID id: String, forType type: STSocialType, handler: @escaping STLikeHandler) {
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
-            auth(forType: type)
+            if isDynamicLogin {
+                auth(forType: type)
+            }
+            
             handler(nil, nil)
             return
         }
@@ -526,6 +534,13 @@ open class STSocialManager: NSObject {
     
     public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) {
         
+        /// Checking if the user is loged in
+        guard isLogedin(type: type) else {
+            auth(forType: type)
+            handler(false, nil)
+            return
+        }
+        
         switch type {
         case .facebook:
             let request = FBSDKGraphRequest(graphPath: "\(id)/likes", parameters: [:], httpMethod: STHTTPMethod.POST.rawValue)
@@ -590,6 +605,14 @@ open class STSocialManager: NSObject {
     /// Unliking a sopcial post for service
     
     public func unlike(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) {
+        
+        /// Checking if the user is loged in
+        guard isLogedin(type: type) else {
+            auth(forType: type)
+            handler(false, nil)
+            return
+        }
+        
         switch type {
         case .facebook:
             let request = FBSDKGraphRequest(graphPath: "\(id)/likes", parameters: [:], httpMethod: STHTTPMethod.DELETE.rawValue)
