@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'STWSocialKit'
-s.version          = '0.1.5'
+s.version          = '0.1.51'
 s.summary          = 'Wrapper for social media SDKs'
 
 # This description is used to generate tags and improve search results.
@@ -37,13 +37,11 @@ s.resource_bundles = {
 # s.public_header_files = 'Pod/Classes/**/*.h'
 s.frameworks = 'Social'
 # s.dependency 'AFNetworking', '~> 2.3'
-# s.dependency 'OAuthSwift', '~> 1.1.0'
+s.dependency 'OAuthSwift', '~> 1.1.0'
 s.dependency 'Locksmith', '~> 3.0.0'
 s.dependency 'ObjectMapper', '~> 2.2.1'
 s.dependency 'FBSDKCoreKit', '~> 4.17.0'
 s.dependency 'FBSDKShareKit', '~> 4.17.0'
 s.dependency 'FBSDKLoginKit', '~> 4.17.0'
 
-s.preserve_paths = 'Carthage/Build/iOS/OAuthSwift.framework'
-s.ios.vendored_frameworks = 'Carthage/Build/iOS/OAuthSwift.framework'
 end
