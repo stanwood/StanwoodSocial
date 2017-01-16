@@ -339,6 +339,7 @@ open class STSocialManager: NSObject {
      GET social service like object
      */
     public func getComment(objectID id: String, forType type: STSocialType, handler: @escaping STCommentHandler) {
+
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             if isDynamicLogin {
@@ -392,26 +393,31 @@ open class STSocialManager: NSObject {
             
             let url =  String(format: kIGCommentURL, id, igOAuthSwift!.client.credential.oauthToken)
             
-            let operation = BlockOperation(block: {
+            let operation = BlockOperation(block: { [_id = id] in
                 _ = self.igOAuthSwift?.client.get(url,
                                                   success: { (response:OAuthSwiftResponse) in
                                                     do {
                                                         if let jsonDict = try response.jsonObject() as? [String:Any] {
                                                             let map = Map(mappingType: .fromJSON, JSON: jsonDict)
-                                                            let _ = STComment(map: map, id: "")
-                                                            //TODO: Set comment object if needed
+                                                            var comment = STComment(map: map, id: _id)
+                                                            comment.canComment = true
+                                                            
+                                                            handler(comment, nil)
                                                         }
                                                     } catch {
                                                         print(error)
+                                                        handler(nil, error)
                                                     }
                 }, failure: { (error:OAuthSwiftError) in
                     print(error.description)
+                    handler(nil, error)
                 })
             })
             
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.comment)_\(id)"] = operation
         case .youtube:
+            handler(nil, nil)
             break
         }
     }
@@ -747,15 +753,25 @@ open class STSocialManager: NSObject {
      Checking if the user has been loged in
      */
     fileprivate func isLogedin(type: STSocialType) -> Bool {
-        if type == .youtube {
-            
-        }
+
+        guard let service = getService(forType: type) else { return false }
+        
         switch type {
         case .facebook:
             return FBSDKAccessToken.current() != nil
         case .instagram:
             /// Auth Instagram
-            return igOAuthSwift == nil ? false : igOAuthSwift!.client.credential.oauthToken.characters.count > 0
+            if let token = service.token {
+                if igOAuthSwift!.client.credential.oauthToken.characters.count == 0 {
+                    igOAuthSwift?.client.credential.oauthToken = token
+                    self.setInstagramUser()
+                    print("Instagarm Auto Login Access_Token: \(token)")
+                }
+                return true
+            } else {
+                /// Rauthenticating the user to Instagram
+                return false
+            }
         case .youtube:
             /// Auth youtube
             if let auth = ytOAuthSwift, !auth.client.credential.isTokenExpired() && auth.client.credential.oauthToken.characters.count > 0 {
