@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RpA-HP-tOU">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RpA-HP-tOU">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -68,10 +68,17 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" keyboardAppearance="light"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOi-HI-UIu">
-                                <rect key="frame" x="142.5" y="219" width="89" height="30"/>
-                                <state key="normal" title="Laucnh Feed"/>
+                                <rect key="frame" x="151" y="219" width="72" height="30"/>
+                                <state key="normal" title="Load Feed"/>
                                 <connections>
                                     <action selector="presentFeed:" destination="sey-P7-BbM" eventType="touchUpInside" id="wQw-oC-fTY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrB-Br-cdm">
+                                <rect key="frame" x="130" y="90" width="115" height="30"/>
+                                <state key="normal" title="Set Default Feed"/>
+                                <connections>
+                                    <action selector="setDefault:" destination="sey-P7-BbM" eventType="touchUpInside" id="fho-YM-aJZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -80,6 +87,8 @@
                             <constraint firstItem="gWN-sw-L6e" firstAttribute="leading" secondItem="uQc-6Z-H56" secondAttribute="leading" constant="12" id="9Ew-dE-dkq"/>
                             <constraint firstAttribute="trailing" secondItem="gWN-sw-L6e" secondAttribute="trailing" constant="12" id="JTN-qO-fbD"/>
                             <constraint firstItem="BOi-HI-UIu" firstAttribute="top" secondItem="gWN-sw-L6e" secondAttribute="bottom" constant="50" id="KRf-lR-vIq"/>
+                            <constraint firstItem="gWN-sw-L6e" firstAttribute="top" secondItem="FrB-Br-cdm" secondAttribute="bottom" constant="19" id="mna-3h-fUh"/>
+                            <constraint firstItem="FrB-Br-cdm" firstAttribute="centerX" secondItem="gWN-sw-L6e" secondAttribute="centerX" id="sLR-WR-u6c"/>
                             <constraint firstItem="gWN-sw-L6e" firstAttribute="top" secondItem="Bwv-kU-Ndw" secondAttribute="bottom" constant="75" id="wfq-sA-HkJ"/>
                             <constraint firstItem="BOi-HI-UIu" firstAttribute="centerX" secondItem="uQc-6Z-H56" secondAttribute="centerX" id="yK4-Gp-h6f"/>
                         </constraints>

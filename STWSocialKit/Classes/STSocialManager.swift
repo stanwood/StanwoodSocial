@@ -426,6 +426,7 @@ open class STSocialManager: NSObject {
      GET social service like object
      */
     public func getLike(objectID id: String, forType type: STSocialType, handler: @escaping STLikeHandler) {
+
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             if isDynamicLogin {
@@ -749,6 +750,32 @@ open class STSocialManager: NSObject {
         }
     }
     
+    fileprivate func setupYoutubeUser(refreshToken token:String){
+        
+        guard let service = getService(forType: .youtube) else { return }
+        
+        _  = ytOAuthSwift?.renewAccessToken(withRefreshToken: token, success: {
+            (credential, response, parameters) in
+            //Setting the refresh token
+            service.token = credential.oauthToken
+            
+            // Infoprming the delegate YouTube is logged in
+            self.delegate?.didLogin(type: .youtube, withError: nil)
+            
+            print("YouTube Auto Login Access_Token: \(credential.oauthToken)")
+            }, failure: { (error) in
+                //If token expires, clear existing token and reauthenticating the user
+                
+                // Logging out the user
+                service.logout()
+                
+                // Informing the delegate YouTube is logged out
+                self.delegate?.didLogout(type: .youtube)
+                
+                print(error.description)
+        })
+    }
+    
     /*
      Checking if the user has been loged in
      */
@@ -774,8 +801,13 @@ open class STSocialManager: NSObject {
             }
         case .youtube:
             /// Auth youtube
-            if let auth = ytOAuthSwift, !auth.client.credential.isTokenExpired() && auth.client.credential.oauthToken.characters.count > 0 {
-                return true
+            if let _token = service.refreshToken {
+                if let auth = ytOAuthSwift, !auth.client.credential.isTokenExpired() && auth.client.credential.oauthToken.characters.count > 0 {
+                    return true
+                } else {
+                    setupYoutubeUser(refreshToken: _token)
+                    return true
+                }
             } else {
                 return false
             }

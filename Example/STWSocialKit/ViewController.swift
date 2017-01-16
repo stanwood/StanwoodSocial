@@ -23,6 +23,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         navigationController?.pushViewController(socialViewController!, animated: true)
     }
     
+    @IBAction func setDefault(_ sender: Any) {
+        socialTextField.text = "https://social-media-wall-sartorius.firebaseio.com/iho6nlj79jdd/Sophia/posts.json"
+    }
+    
     func presentError() {
         let alert = UIAlertController(title: "Error", message: "Please enter a valid URL!", preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .default, handler: nil)
