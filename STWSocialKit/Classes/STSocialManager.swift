@@ -417,8 +417,10 @@ open class STSocialManager: NSObject {
             queue?.addOperation(operation)
             queueDictionary["\(STOperation.comment)_\(id)"] = operation
         case .youtube:
-            handler(nil, nil)
-            break
+            let dic:[String:Any] = [STCommentKey.canComment.rawValue:true]
+            let map = Map(mappingType: .fromJSON, JSON: dic)
+            let comment = STComment(map: map, id: id)
+            handler(comment, nil)
         }
     }
     
