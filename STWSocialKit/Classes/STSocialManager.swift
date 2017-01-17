@@ -985,6 +985,15 @@ open class STSocialManager: NSObject {
     // MARK: - Logout
     
     public func logout() {
+        
+        let cookies = HTTPCookieStorage.shared.cookies
+        
+        for cookie in cookies ?? [] {
+            if cookie.domain.contains("instagram.com") || cookie.domain.contains("facebook.com") {
+                HTTPCookieStorage.shared.deleteCookie(cookie)
+            }
+        }
+        
         configurations.logout()
         delegate?.didLogout(type: nil)
     }

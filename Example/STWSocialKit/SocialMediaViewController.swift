@@ -30,6 +30,13 @@ class SocialMediaViewController: UIViewController {
         collectionView.allowsSelection = false
  
         loadData(withUrl: socialUrl.absoluteString)
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(SocialMediaViewController.logout))
+    }
+    
+    func logout(){
+        STSocialManager.shared.logout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
