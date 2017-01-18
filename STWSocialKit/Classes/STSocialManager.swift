@@ -159,6 +159,17 @@ open class STSocialManager: NSObject {
             let postURL = URL(string: link ?? "")
             let imageURL = URL(string: urlString ?? "")
             
+            let content = FBSDKShareLinkContent()
+            content.contentTitle = title
+            content.contentDescription = text
+            content.contentURL = postURL
+            content.imageURL = imageURL
+            
+            let shareButton = FBSDKShareButton()
+            shareButton.shareContent = content
+            
+            shareButton.sendActions(for: .touchUpInside)
+            /*
             if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
                 if let socialController = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
                     socialController.setInitialText(text)
@@ -179,7 +190,7 @@ open class STSocialManager: NSObject {
                 shareButton.shareContent = content
                 
                 shareButton.sendActions(for: .touchUpInside)
-            }
+            }*/
         case .instagram, .youtube:
             guard target != nil else {
                 throw STSocialError.shareError("No Target! Please set a target to share a post... STSocialManager.shared.set(target: target)")
