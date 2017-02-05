@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'STWSocialKit'
-s.version          = '0.1.56'
+s.version          = '0.1.57'
 s.summary          = 'Wrapper for social media SDKs'
 
 # This description is used to generate tags and improve search results.
