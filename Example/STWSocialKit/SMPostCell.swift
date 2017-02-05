@@ -69,12 +69,16 @@ class SMPostCell: UICollectionViewCell {
         
         switch action {
         case .like:
-            guard let hasLiked = likeObject?.hasLiked else {
-                delegate?.auth(type: postType)
-                return
+            if type != .instagram {
+                guard let hasLiked = likeObject?.hasLiked else {
+                    delegate?.auth(type: postType)
+                    return
+                }
+                
+                hasLiked ? unlike(sender: sender) : like(sender: sender)
+            } else {
+                like(sender: sender)
             }
-            
-            hasLiked ? unlike(sender: sender) : like(sender: sender)
         case .comment:
             guard let canComment = commentObject?.canComment else {
                 delegate?.auth(type: postType)
@@ -244,21 +248,30 @@ class SMPostCell: UICollectionViewCell {
     }
     
     fileprivate func like(sender: UIButton){
-        guard let type = STSocialType(rawValue: postType.rawValue),
-            (likeObject?.canLike)! else { return }
+        guard let type = STSocialType(rawValue: postType.rawValue) else { return }
+        
+        if type != .instagram {
+            guard (likeObject?.canLike)! else { return }
+        }
+        
         let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
-        STSocialManager.shared.like(postID: id, forSocialType: type, handler: {
-            [weak self, id = post!.id] (success: Bool, error: Error?) in
-            DispatchQueue.main.async(execute: {
-                if success {
-                    self?.likeObject?.hasLiked = true
-                    sender.setImage(UIImage(named: SocialImage.like.rawValue), for: .normal)
-                } else {
-                    print("Failed do liek post id\(id)")
-                }
+        do {
+            try STSocialManager.shared.like(postID: id, forSocialType: type, handler: {
+                [weak self, id = post!.id] (success: Bool, error: Error?) in
+                DispatchQueue.main.async(execute: {
+                    if success {
+                        self?.likeObject?.hasLiked = true
+                        sender.setImage(UIImage(named: SocialImage.like.rawValue), for: .normal)
+                    } else {
+                        print("Failed do liek post id\(id)")
+                    }
+                })
             })
-        })
+        } catch STSocialError.likeError(let message) {
+            print(message)
+        } catch {
+        }
     }
     
     fileprivate func unlike(sender: UIButton){

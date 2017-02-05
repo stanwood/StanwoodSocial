@@ -160,6 +160,7 @@ public enum OAuthErrorType: Error {
 public enum STSocialError: Error {
     case shareError(String)
     case actionError(String)
+    case likeError(String)
 }
 
 internal enum STHTTPMethod: String {

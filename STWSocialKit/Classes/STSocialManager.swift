@@ -552,7 +552,7 @@ open class STSocialManager: NSObject {
     
     /// Liking a social post for service
     
-    public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) {
+    public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) throws {
         
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
@@ -575,6 +575,15 @@ open class STSocialManager: NSObject {
             })
         case .instagram:
             
+            guard let url = URL(string: "instagram://media?id=\(id)") else { return }
+            
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.openURL(url)
+            } else {
+                throw STSocialError.likeError("Please install Instagram")
+            }
+            
+            /*
             // Checking if Instagram Auth service was configured
             guard igOAuthSwift != nil else {
                 handler(false, STSocialErrorDomain.igAuthError)
@@ -595,7 +604,7 @@ open class STSocialManager: NSObject {
             }, failure: { (error: OAuthSwiftError) in
                 print(error.description)
                 handler(false, error.toNSError)
-            })
+            })*/
         case .youtube:
             
             // Checking if YouTube Auth service was configured
