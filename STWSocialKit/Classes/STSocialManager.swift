@@ -321,7 +321,7 @@ open class STSocialManager: NSObject {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.openURL(url)
             } else {
-                throw STSocialError.likeError("Please install Instagram")
+                throw STSocialError.likeError("Please install Instagram to comment")
             }
             
             /*
@@ -594,7 +594,7 @@ open class STSocialManager: NSObject {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.openURL(url)
             } else {
-                throw STSocialError.likeError("Please install Instagram")
+                throw STSocialError.likeError("Please install Instagram to like")
             }
             
             /*
