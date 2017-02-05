@@ -37,6 +37,7 @@ public class STSocialService: STSocialServiceProtocol {
     var appID: String
     var appSecret: String
     var callbackURI: String?
+    var authRequired:Bool
     
     /// Storing the user id in the keychain
     var userId:String? {
@@ -107,11 +108,12 @@ public class STSocialService: STSocialServiceProtocol {
     }
     
     // MARK: Init
-    public init(appID: String, appSecret: String, appType: STSocialType, callbackURI: String? = nil) {
+    public init(appID: String, appSecret: String, appType: STSocialType, callbackURI: String? = nil, authRequired: Bool = true) {
         self.appID = appID
         self.appSecret = appSecret
         self.appType = appType
         self.callbackURI = callbackURI
+        self.authRequired = authRequired
     }
     
     // MARK: Logout

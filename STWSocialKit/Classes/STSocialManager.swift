@@ -801,6 +801,8 @@ open class STSocialManager: NSObject {
             return FBSDKAccessToken.current() != nil
         case .instagram:
             /// Auth Instagram
+            guard service.authRequired else { return true }
+            
             if let token = service.token {
                 if igOAuthSwift!.client.credential.oauthToken.characters.count == 0 {
                     igOAuthSwift?.client.credential.oauthToken = token

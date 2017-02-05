@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// Configuring Interactive Social Stream
         let facebook = STSocialService(appID: SocialConstants.fbAppID, appSecret: SocialConstants.fbAppSecret, appType: .facebook)
-        let instagram = STSocialService(appID: SocialConstants.igAppID, appSecret: SocialConstants.igAppSecret, appType: .instagram, callbackURI: "https://www.sophia-thiel.com")
+        let instagram = STSocialService(appID: SocialConstants.igAppID, appSecret: SocialConstants.igAppSecret, appType: .instagram, callbackURI: "https://www.sophia-thiel.com", authRequired: false)
         let youtube = STSocialService(appID: SocialConstants.ytAppID, appSecret: SocialConstants.ytAppSecret, appType: .youtube, callbackURI: "\(Bundle.main.bundleIdentifier ?? ""):/oauth2Callback")
         
         let configurations = STSocialConfiguration(services: [facebook, instagram, youtube])
