@@ -161,6 +161,7 @@ public enum STSocialError: Error {
     case shareError(String)
     case actionError(String)
     case likeError(String)
+    case commentError(String)
 }
 
 internal enum STHTTPMethod: String {
