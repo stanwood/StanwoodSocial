@@ -255,7 +255,8 @@ open class STSocialManager: NSObject {
     // MARK: - Social Actions
     
     // An option to post a comment with a custom pop up
-    public func post(toChannel channel: String? = nil, comment: String, withObjectID id: String, type: STSocialType) {
+    public func post(toChannel channel: String? = nil, comment: String, withObjectID id: String, type: STSocialType) throws {
+        
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
             auth(forType: type)
@@ -263,7 +264,11 @@ open class STSocialManager: NSObject {
         }
         
         // Post comment
-        self.comment(channel: channel, withObjectID: id, forType: type, comment: comment)
+        do {
+            try self.comment(channel: channel, withObjectID: id, forType: type, comment: comment)
+        } catch STSocialError.commentError(let message) {
+            throw STSocialError.commentError(message)
+        }
     }
     
     public func postComment(channel: String? = nil, withObjectID id: String, type: STSocialType, withLocalizedStrings strings:STLocalizedCommentStrings?) {
@@ -281,7 +286,7 @@ open class STSocialManager: NSObject {
         let send = UIAlertAction(title: isDefault ? "Send" : strings!.send, style: .default) {
             (action) in
             if let textField = alertSheet.textFields?.first {
-                self.comment(channel: channel, withObjectID: id, forType: type, comment: textField.text ?? "")
+                try? self.comment(channel: channel, withObjectID: id, forType: type, comment: textField.text ?? "")
             }
         }
         
@@ -299,7 +304,7 @@ open class STSocialManager: NSObject {
     /*
      GET social service like object
      */
-    fileprivate func comment(channel: String?, withObjectID id: String, forType type: STSocialType, comment: String) {
+    fileprivate func comment(channel: String?, withObjectID id: String, forType type: STSocialType, comment: String) throws {
         
         switch type {
         case .facebook:
@@ -311,6 +316,15 @@ open class STSocialManager: NSObject {
             })
         case .instagram:
             
+            guard let url = URL(string: "instagram://media?id=\(id)") else { return }
+            
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.openURL(url)
+            } else {
+                throw STSocialError.likeError("Please install Instagram to comment")
+            }
+            
+            /*
             guard igOAuthSwift != nil else {
                 return
             }
@@ -324,7 +338,7 @@ open class STSocialManager: NSObject {
                 print("Posting comment - statusCode: \(response.response.statusCode)")
             }, failure: { (error:OAuthSwiftError) in
                 print(error.description)
-            })
+            })*/
         case .youtube:
             
             guard ytOAuthSwift != nil else {
@@ -552,7 +566,7 @@ open class STSocialManager: NSObject {
     
     /// Liking a social post for service
     
-    public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) {
+    public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) throws {
         
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
@@ -575,6 +589,15 @@ open class STSocialManager: NSObject {
             })
         case .instagram:
             
+            guard let url = URL(string: "instagram://media?id=\(id)") else { return }
+            
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.openURL(url)
+            } else {
+                throw STSocialError.likeError("Please install Instagram to like")
+            }
+            
+            /*
             // Checking if Instagram Auth service was configured
             guard igOAuthSwift != nil else {
                 handler(false, STSocialErrorDomain.igAuthError)
@@ -595,7 +618,7 @@ open class STSocialManager: NSObject {
             }, failure: { (error: OAuthSwiftError) in
                 print(error.description)
                 handler(false, error.toNSError)
-            })
+            })*/
         case .youtube:
             
             // Checking if YouTube Auth service was configured
@@ -801,6 +824,8 @@ open class STSocialManager: NSObject {
             return FBSDKAccessToken.current() != nil
         case .instagram:
             /// Auth Instagram
+            guard service.authRequired else { return true }
+            
             if let token = service.token {
                 if igOAuthSwift!.client.credential.oauthToken.characters.count == 0 {
                     igOAuthSwift?.client.credential.oauthToken = token
