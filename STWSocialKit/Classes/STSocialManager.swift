@@ -255,7 +255,7 @@ open class STSocialManager: NSObject {
     // MARK: - Social Actions
     
     // An option to post a comment with a custom pop up
-    public func post(toChannel channel: String? = nil, comment: String, withObjectID id: String, type: STSocialType) throws {
+    public func post(toChannel channel: String? = nil, comment: String, withObjectID id: String, type: STSocialType, url: String? = nil) throws {
         
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
@@ -265,7 +265,7 @@ open class STSocialManager: NSObject {
         
         // Post comment
         do {
-            try self.comment(channel: channel, withObjectID: id, forType: type, comment: comment)
+            try self.comment(channel: channel, withObjectID: id, forType: type, comment: comment, url: url)
         } catch STSocialError.commentError(let message) {
             throw STSocialError.commentError(message)
         }
@@ -286,7 +286,7 @@ open class STSocialManager: NSObject {
         let send = UIAlertAction(title: isDefault ? "Send" : strings!.send, style: .default) {
             (action) in
             if let textField = alertSheet.textFields?.first {
-                try? self.comment(channel: channel, withObjectID: id, forType: type, comment: textField.text ?? "")
+                try? self.comment(channel: channel, withObjectID: id, forType: type, comment: textField.text ?? "", url: nil)
             }
         }
         
@@ -304,7 +304,7 @@ open class STSocialManager: NSObject {
     /*
      GET social service like object
      */
-    fileprivate func comment(channel: String?, withObjectID id: String, forType type: STSocialType, comment: String) throws {
+    fileprivate func comment(channel: String?, withObjectID id: String, forType type: STSocialType, comment: String, url:String?) throws {
         
         switch type {
         case .facebook:
@@ -316,10 +316,12 @@ open class STSocialManager: NSObject {
             })
         case .instagram:
             
-            guard let url = URL(string: "instagram://media?id=\(id)") else { return }
+            guard let _url = URL(string: "instagram://media?id=\(id)") else { return }
             
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+            if UIApplication.shared.canOpenURL(_url) {
+                UIApplication.shared.openURL(_url)
+            } else if let webUrl = URL(string: url ?? ""){
+                UIApplication.shared.openURL(webUrl)
             } else {
                 throw STSocialError.commentError("Please install Instagram to comment")
             }
@@ -566,7 +568,7 @@ open class STSocialManager: NSObject {
     
     /// Liking a social post for service
     
-    public func like(postID id: String, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) throws {
+    public func like(postID id: String, webUrl url: String?, forSocialType type: STSocialType, handler: @escaping STSuccessBlock) throws {
         
         /// Checking if the user is loged in
         guard isLogedin(type: type) else {
@@ -589,14 +591,16 @@ open class STSocialManager: NSObject {
             })
         case .instagram:
             
-            guard let url = URL(string: "instagram://media?id=\(id)") else { return }
+            guard let _url = URL(string: "instagram://media?id=\(id)") else { return }
             
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.openURL(url)
+            if UIApplication.shared.canOpenURL(_url) {
+                UIApplication.shared.openURL(_url)
+            } else if let webUrl = URL(string: url ?? ""){
+                UIApplication.shared.openURL(webUrl)
             } else {
                 throw STSocialError.likeError("Please install Instagram to like")
             }
-            
+          
             /*
             // Checking if Instagram Auth service was configured
             guard igOAuthSwift != nil else {

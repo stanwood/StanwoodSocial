@@ -257,7 +257,7 @@ class SMPostCell: UICollectionViewCell {
         let id = type == .instagram ? "1388547752770023453_26609750" : post?.id ?? ""
         
         do {
-            try STSocialManager.shared.like(postID: id, forSocialType: type, handler: {
+            try STSocialManager.shared.like(postID: id, webUrl: nil, forSocialType: type, handler: {
                 [weak self, id = post!.id] (success: Bool, error: Error?) in
                 DispatchQueue.main.async(execute: {
                     if success {
