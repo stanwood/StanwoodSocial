@@ -27,7 +27,7 @@ open class STSocialManager: NSObject {
     open static var shared:STSocialManager = STSocialManager()
     
     /// Service configurations
-    open var configurations:STSocialConfiguration!
+    fileprivate var configurations:STSocialConfiguration!
     
     /// Service OAuth2 handlers
     fileprivate var igOAuthSwift: OAuth2Swift?
@@ -976,7 +976,7 @@ open class STSocialManager: NSObject {
         }
     }
     
-    fileprivate func getService(forType type: STSocialType) -> STSocialService? {
+    open func getService(forType type: STSocialType) -> STSocialService? {
         
         for service in self.configurations.services {
             if service.appType == type {
