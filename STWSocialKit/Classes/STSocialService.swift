@@ -34,13 +34,13 @@ public enum STSocialType: String {
 public class STSocialService: STSocialServiceProtocol {
     
     var appType: STSocialType
-    var appID: String
-    var appSecret: String
+    open var appID: String
+    open var appSecret: String
     var callbackURI: String?
     var authRequired:Bool
     
     /// Storing the user id in the keychain
-    var userId:String? {
+    open var userId:String? {
         get {
             if let dictionary = Locksmith.loadDataForUserAccount(userAccount: "user_id\(appType.rawValue)") {
                 return dictionary["user_id_\(appID)"] as? String
@@ -63,7 +63,7 @@ public class STSocialService: STSocialServiceProtocol {
     }
     
     //Storing the access token in the keychain
-    var token: String? {
+    open var token: String? {
         get {
             if let dictionary = Locksmith.loadDataForUserAccount(userAccount: appType.rawValue) {
                 return dictionary["token_\(appID)"] as? String
@@ -85,7 +85,7 @@ public class STSocialService: STSocialServiceProtocol {
         }
     }
     
-    var refreshToken: String? {
+    open var refreshToken: String? {
         get {
             if let dictionary = Locksmith.loadDataForUserAccount(userAccount: "refreshToken_\(appType.rawValue)") {
                 return dictionary["refreshToken_\(appID)"] as? String
