@@ -27,7 +27,7 @@ open class STSocialManager: NSObject {
     open static var shared:STSocialManager = STSocialManager()
     
     /// Service configurations
-    fileprivate var configurations:STSocialConfiguration!
+    open var configurations:STSocialConfiguration!
     
     /// Service OAuth2 handlers
     fileprivate var igOAuthSwift: OAuth2Swift?
