@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'STWSocialKit'
-s.version          = '0.1.64'
+s.version          = '0.1.65'
 s.summary          = 'Wrapper for social media SDKs'
 
 # This description is used to generate tags and improve search results.
@@ -18,12 +18,11 @@ s.summary          = 'Wrapper for social media SDKs'
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
 s.description      = <<-DESC
-TODO: Add long description of the pod here.
+'Wrapper for social media sdk'
 DESC
 
 s.homepage         = 'https://github.com/stanwood/STWSocialKit'
-# s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-s.license          = { :type => 'MIT', :file => 'LICENSE' }
+s.license          = { :type => 'Private', :file => 'LICENSE' }
 s.author           = { 'Tal Zion' => 'talezion@gmail.com' }
 s.source           = { :git => 'https://github.com/stanwood/STWSocialKit.git', :tag => s.version.to_s }
 
