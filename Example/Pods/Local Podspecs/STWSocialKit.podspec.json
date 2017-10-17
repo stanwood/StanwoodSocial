@@ -1,11 +1,11 @@
 {
   "name": "STWSocialKit",
-  "version": "0.1.62",
+  "version": "0.1.65",
   "summary": "Wrapper for social media SDKs",
-  "description": "TODO: Add long description of the pod here.",
+  "description": "'Wrapper for social media sdk'",
   "homepage": "https://github.com/stanwood/STWSocialKit",
   "license": {
-    "type": "MIT",
+    "type": "Private",
     "file": "LICENSE"
   },
   "authors": {
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/stanwood/STWSocialKit.git",
-    "tag": "0.1.62"
+    "tag": "0.1.65"
   },
   "platforms": {
     "ios": "9.3"
@@ -25,7 +25,7 @@
   "frameworks": "Social",
   "dependencies": {
     "OAuthSwift": [
-      "~> 1.2.0"
+      "~> 1.1.2"
     ],
     "Locksmith": [
       "~> 4.0.0"

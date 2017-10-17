@@ -8,15 +8,8 @@
 
 Pod::Spec.new do |s|
 s.name             = 'STWSocialKit'
-s.version          = '0.1.65'
+s.version          = '0.1.7'
 s.summary          = 'Wrapper for social media SDKs'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
 s.description      = <<-DESC
 'Wrapper for social media sdk'
 DESC
@@ -33,10 +26,8 @@ s.source_files = 'STWSocialKit/Classes/**/*'
 s.resource_bundles = {
 }
 
-# s.public_header_files = 'Pod/Classes/**/*.h'
 s.frameworks = 'Social'
-# s.dependency 'AFNetworking', '~> 2.3'
-s.dependency 'OAuthSwift', '~> 1.2.0'
+s.dependency 'OAuthSwift', '~> 1.1.2'
 s.dependency 'Locksmith', '~> 4.0.0'
 s.dependency 'ObjectMapper', '~> 2.2.1'
 s.dependency 'FBSDKCoreKit', '~> 4.17.0'
