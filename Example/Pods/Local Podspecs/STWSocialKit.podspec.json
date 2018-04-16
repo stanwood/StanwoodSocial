@@ -1,6 +1,6 @@
 {
-  "name": "STWSocialKit",
-  "version": "0.1.65",
+  "name": "StanwoodSocial",
+  "version": "0.1.8",
   "summary": "Wrapper for social media SDKs",
   "description": "'Wrapper for social media sdk'",
   "homepage": "https://github.com/stanwood/STWSocialKit",
@@ -12,11 +12,11 @@
     "Tal Zion": "talezion@gmail.com"
   },
   "source": {
-    "git": "https://github.com/stanwood/STWSocialKit.git",
-    "tag": "0.1.65"
+    "git": "git@github.com:stanwood/STWSocialKit.git",
+    "tag": "0.1.8"
   },
   "platforms": {
-    "ios": "9.3"
+    "ios": "10.0"
   },
   "requires_arc": true,
   "source_files": "STWSocialKit/Classes/**/*",
