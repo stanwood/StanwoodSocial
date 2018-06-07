@@ -1,10 +1,5 @@
 
-<p align="center">
-    <img src="Assets/STWSocial-Icon.png?raw=false" alt="STWSocialKit"/>
-</p>
-
-
-# STWSocialKit
+# StanwoodSocial
 
 
 [![Swift Version](https://img.shields.io/badge/Swift-3.0.x-orange.svg)]()
@@ -25,7 +20,7 @@ Instagram API Sandbox environment is boxed for any activity done outside the env
 
 ## Installation
 
-STWSocialKit is available through [Stanwood](https://github.com/stanwood/Cocoa_Pods_Specs.git) master specs. To install
+StanwoodSocial is available through [Stanwood](https://github.com/stanwood/Cocoa_Pods_Specs.git) master specs. To install
 it, simply add the following line to your Podfile, include the private source specs:
 
 ```ruby
@@ -33,7 +28,7 @@ source 'https://github.com/stanwood/Cocoa_Pods_Specs.git'
 use_frameworks!
 
     target 'STWProject' do
-    pod 'STWSocialKit'
+    pod 'StanwoodSocial'
 end
 ```
 
@@ -321,7 +316,7 @@ Simply call `STSocialManager.shared.logout` to log out the user from all service
 
 ## Dependencies
 
-`STWSocialKit` comes bundled with several libraries:
+`StanwoodSocial` comes bundled with several libraries:
 
 ```ruby
 # iOS Frameworks
@@ -338,4 +333,4 @@ s.dependency 'FBSDKLoginKit', '~> 4.17.0'
 
 ## License
 
-STWSocialKit is under MIT licence. See the LICENSE file for more info
+StanwoodSocial is under MIT licence. See the LICENSE file for more info

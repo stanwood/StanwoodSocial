@@ -1,13 +1,13 @@
 //
 //  AppDelegate.swift
-//  STWSocialKit
+//  StanwoodSocial
 //
 //  Created by Tal Zion on 11/28/2016.
-//  Copyright (c) 2016 Tal Zion. All rights reserved.
+//  Distributed under MIT licence.
 //
 
 import UIKit
-import STWSocialKit
+import StanwoodSocial
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

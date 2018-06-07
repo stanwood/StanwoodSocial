@@ -11,7 +11,7 @@ import YouTubePlayer
 import FontAwesome_swift
 import FBSDKLoginKit
 import FBSDKCoreKit
-import STWSocialKit
+import StanwoodSocial
 
 enum SocialAction: Int {
     case like

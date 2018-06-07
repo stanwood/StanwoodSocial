@@ -17,12 +17,12 @@ DESC
 s.homepage         = 'https://github.com/stanwood/StanwoodSocial'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'Tal Zion' => 'talezion@gmail.com' }
-s.source           = { :git => 'https://github.com:stanwood/StanwoodSocial.git', :tag => s.version.to_s }
+s.source           = { :git => 'https://github.com/stanwood/StanwoodSocial.git', :tag => s.version.to_s }
 
 s.ios.deployment_target = '9.3'
 s.requires_arc = true
 
-s.source_files = 'StanwoodSocial/Classes/**/*'
+s.source_files = 'STWSocialKit/Classes/**/*'
 s.resource_bundles = {
 }
 

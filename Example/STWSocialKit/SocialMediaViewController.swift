@@ -3,11 +3,11 @@
 //  Mach_Dich_Krass
 //
 //  Created by Tal Zion on 31/08/2016.
-//  Copyright © 2016 Stanwood GmbH. All rights reserved.
+//  Distributed under MIT licence.
 //
 
 import UIKit
-import STWSocialKit
+import StanwoodSocial
 
 class SocialMediaViewController: UIViewController {
 
