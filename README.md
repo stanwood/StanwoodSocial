@@ -338,4 +338,4 @@ s.dependency 'FBSDKLoginKit', '~> 4.17.0'
 
 ## License
 
-STWSocialKit is a private library. See the LICENSE file for more info
+STWSocialKit is under MIT licence. See the LICENSE file for more info
