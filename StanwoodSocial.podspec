@@ -19,7 +19,7 @@ s.license          = { :type => 'MIT', :file => 'LICENSE' }
 s.author           = { 'Tal Zion' => 'talezion@gmail.com' }
 s.source           = { :git => 'https://github.com/stanwood/StanwoodSocial.git', :tag => s.version.to_s }
 
-s.ios.deployment_target = '9.3'
+s.ios.deployment_target = '10'
 s.requires_arc = true
 
 s.source_files = 'STWSocialKit/Classes/**/*'
