@@ -3,10 +3,8 @@
 //  StanwoodSocial
 //
 //  Copyright (c) 2018 stanwood GmbH
-<<<<<<< Updated upstream
-=======
 //  Distributed under MIT licence.
->>>>>>> Stashed changes
+
 //
 //  The MIT License (MIT)
 //
