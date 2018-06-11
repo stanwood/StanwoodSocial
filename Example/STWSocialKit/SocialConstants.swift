@@ -1,9 +1,9 @@
 //
 //  SocialConstants.swift
-//  STWSocialKit
+//  StanwoodSocial
 //
 //  Created by Tal Zion on 29/11/2016.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Distributed under MIT licence.
 //
 
 import Foundation
