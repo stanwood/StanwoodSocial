@@ -1,8 +1,8 @@
 //
 //  STLocalizedCommentStrings.swift
-//  Mach_Dich_Krass
+//  StanwoodSocial
 //
-//  Created by Tal Zion on 25/11/2016.
+//  Copyright (c) 2018 stanwood GmbH
 //
 //  The MIT License (MIT)
 //

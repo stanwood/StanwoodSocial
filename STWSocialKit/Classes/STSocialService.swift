@@ -1,8 +1,8 @@
 //
 //  STSocialService.swift
-//  Mach_Dich_Krass
+//  StanwoodSocial
 //
-//  Created by Tal Zion on 31/10/2016.
+//  Copyright (c) 2018 stanwood GmbH
 //
 //  The MIT License (MIT)
 //
