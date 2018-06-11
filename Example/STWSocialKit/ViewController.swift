@@ -2,7 +2,8 @@
 //  ViewController.swift
 //  StanwoodSocial
 //
-//  Created by Tal Zion on 29/11/2016.
+//  Copyright (c) 2018 stanwood GmbH
+//  Distributed under MIT licence.
 //
 //  The MIT License (MIT)
 //

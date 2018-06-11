@@ -1,9 +1,9 @@
 //
 //  SocialMediaDelegate.swift
-//  Mach_Dich_Krass
+//  StanwoodSocial
 //
-//  Created by Tal Zion on 31/08/2016.
-//  Copyright © 2016 Stanwood GmbH. All rights reserved.
+//  Copyright (c) 2018 stanwood GmbH
+//  Distributed under MIT licence.
 //
 
 import Foundation

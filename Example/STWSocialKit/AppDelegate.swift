@@ -6,9 +6,9 @@
 //
 //  The MIT License (MIT)
 //
-//  Copyright (c) 2018 Stanwood GmbH (www.stanwood.io)
+//  Copyright (c) 2018 stanwood GmbH
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  Distributed under MIT licence.
 //  of this software and associated documentation files (the "Software"), to deal
 //  in the Software without restriction, including without limitation the rights
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
