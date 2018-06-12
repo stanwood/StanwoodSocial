@@ -74,7 +74,7 @@
 		6C4300F21DED733D00E7F904 /* STWSocialKit_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = STWSocialKit_Example.entitlements; sourceTree = "<group>"; };
 		6C7A05341DEEEC310001DE1C /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		7090953B52D2EE53965F3A6A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		71802D8A37AC607C80F4E3FA /* StanwoodSocial.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = StanwoodSocial.podspec; path = ../StanwoodSocial.podspec; sourceTree = "<group>"; };
+		71802D8A37AC607C80F4E3FA /* StanwoodSocial.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = StanwoodSocial.podspec; path = ../StanwoodSocial.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		86AC069CDD116960932A51D4 /* Pods-STWSocialKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-STWSocialKit_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-STWSocialKit_Example/Pods-STWSocialKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 

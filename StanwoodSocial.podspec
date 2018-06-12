@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'StanwoodSocial'
-s.version          = '1.0.0'
+s.version          = '1.0.1'
 s.summary          = 'Wrapper for social media SDKs'
 s.description      = <<-DESC
 'Wrapper for social media sdk'
@@ -9,7 +9,7 @@ DESC
 
 s.homepage         = 'https://github.com/stanwood/StanwoodSocial'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
-s.author           = { 'Tal Zion' => 'talezion@gmail.com' }
+s.author           = { 'stanwood' => 'ios.frameworks@stanwood.io' }
 s.source           = { :git => 'https://github.com/stanwood/StanwoodSocial.git', :tag => s.version.to_s }
 
 s.ios.deployment_target = '9.3'

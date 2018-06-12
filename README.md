@@ -24,10 +24,9 @@ StanwoodSocial is available through [Stanwood](https://github.com/stanwood/Cocoa
 it, simply add the following line to your Podfile, include the private source specs:
 
 ```ruby
-source 'https://github.com/stanwood/Cocoa_Pods_Specs.git'
 use_frameworks!
 
-    target 'STWProject' do
+    target 'Project' do
     pod 'StanwoodSocial'
 end
 ```

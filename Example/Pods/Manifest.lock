@@ -16,7 +16,7 @@ PODS:
   - Locksmith (4.0.0)
   - OAuthSwift (1.1.2)
   - ObjectMapper (2.2.9)
-  - StanwoodSocial (1.0.0):
+  - StanwoodSocial (1.0.1):
     - FBSDKCoreKit (~> 4.17.0)
     - FBSDKLoginKit (~> 4.17.0)
     - FBSDKShareKit (~> 4.17.0)
@@ -66,7 +66,7 @@ SPEC CHECKSUMS:
   Locksmith: e9bebbaaa4cee3c511bc358a44f843c3fe00e21f
   OAuthSwift: 5aa5659984d3ca3206ba636a9e7a9c6626b2e8bd
   ObjectMapper: 63cfe41bc6f8e7c8f44344c49901b8ae7de14c52
-  StanwoodSocial: dc07db6900bd240c0e226720d360a5cca8af769d
+  StanwoodSocial: ec82bdafb43a71aa28b9faae1d45da8bff2820e8
   YouTubePlayer: 162bd51d7a77b4b6ad914b0b87af07b7e81f8b70
 
 PODFILE CHECKSUM: a1073400fb7abfa3483a611a38edddaec4935adb
